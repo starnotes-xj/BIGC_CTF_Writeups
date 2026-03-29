@@ -46,6 +46,14 @@ tags:
 
     [:octicons-arrow-right-24: 5 篇 Writeups](Misc(杂项)/NovruzCTF_Speedrun.md)
 
+-   :material-trophy:{ .lg .middle } __按比赛查看__
+
+    ---
+
+    按 CTF 竞赛分类浏览全部 writeup
+
+    [:octicons-arrow-right-24: 查看所有比赛](events/index.md)
+
 </div>
 
 ---
@@ -54,7 +62,7 @@ tags:
 
 | 比赛 | 时间 | 类别 | 题数 | 状态 |
 |------|------|------|:----:|------|
-| **NovruzCTF 2025** | 2025.03 | Web / Crypto / Rev / Misc / PPC | 17 | :material-check-circle: 已归档 |
+| [**NovruzCTF 2025**](events/NovruzCTF_2025/index.md) | 2025.03 | Web / Crypto / Rev / Misc / PPC | 17 | :material-check-circle: 已归档 |
 
 ---
 
