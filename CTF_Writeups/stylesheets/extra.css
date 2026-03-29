@@ -90,6 +90,11 @@ body {
   transition: color 0.2s;
 }
 
+/* Always show drawer toggle button for discoverability */
+.md-header__button[for="__drawer"] {
+  display: inline-flex !important;
+}
+
 .md-header__button:hover {
   color: var(--cyb-accent) !important;
 }
@@ -524,9 +529,9 @@ body {
     z-index: 3;
   }
 
-  /* Hide the hamburger menu button */
+  /* Keep the hamburger menu button visible */
   .md-header__button[for="__drawer"] {
-    display: none !important;
+    display: inline-flex !important;
   }
 
   /* Fix the sidebar nav to behave like desktop */
