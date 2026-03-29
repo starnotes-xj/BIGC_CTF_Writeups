@@ -209,8 +209,8 @@ echo "Flag: $known"
 - **bash 脚本** - 自动化盲注提取
 
 ## 脚本归档
-- Go：[`NovruzCTF_Novruzland.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Novruzland.go){target="_blank"}
-- Python：[`NovruzCTF_Novruzland.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruzland.py){target="_blank"}
+- Go：[`NovruzCTF_Novruzland.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Novruzland.go){target="_blank"}
+- Python：[`NovruzCTF_Novruzland.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruzland.py){target="_blank"}
 
 ## 命令行提取关键数据（无 GUI）
 

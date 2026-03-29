@@ -311,8 +311,8 @@ func main() {
 | /dev/tcp | 端口扫描、原始 HTTP 请求 |
 
 ## 脚本归档
-- Go：[`novruzCTF_Novruz2196_WAFBypass.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/novruzCTF_Novruz2196_WAFBypass.go){target="_blank"}
-- Python：[`novruzCTF_Novruz2196_WAFBypass.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/novruzCTF_Novruz2196_WAFBypass.py){target="_blank"}
+- Go：[`novruzCTF_Novruz2196_WAFBypass.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/novruzCTF_Novruz2196_WAFBypass.go){target="_blank"}
+- Python：[`novruzCTF_Novruz2196_WAFBypass.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/novruzCTF_Novruz2196_WAFBypass.py){target="_blank"}
 
 ## 命令行提取关键数据（无 GUI）
 

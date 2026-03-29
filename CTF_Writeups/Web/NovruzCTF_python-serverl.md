@@ -145,8 +145,8 @@ if not filepath.startswith(os.path.realpath(FILES_DIR)):
 - `curl` — HTTP 请求
 
 ## 脚本归档
-- Go：[`NovruzCTF_python-serverl.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_python-serverl.go){target="_blank"}
-- Python：[`NovruzCTF_python-serverl.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_python-serverl.py){target="_blank"}
+- Go：[`NovruzCTF_python-serverl.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_python-serverl.go){target="_blank"}
+- Python：[`NovruzCTF_python-serverl.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_python-serverl.py){target="_blank"}
 
 ## 命令行提取关键数据（无 GUI）
 

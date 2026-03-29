@@ -33,7 +33,7 @@ novruzctf{TBD}
 
 ### 4. 获取 Flag
 - 运行自动化脚本完成 256 题后服务返回 flag（待补）。
-- 当前脚本：[`novruzCTF_NightmareCalc_Misc.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/novruzCTF_NightmareCalc_Misc.go){target="_blank"}
+- 当前脚本：[`novruzCTF_NightmareCalc_Misc.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/novruzCTF_NightmareCalc_Misc.go){target="_blank"}
 
 ## 攻击链/解题流程总结
 
@@ -63,8 +63,8 @@ novruzctf{TBD}
 - （推荐）pwntools — 交互式题目自动化
 
 ## 脚本归档
-- Go：[`NovruzCTF_Speedrun.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Speedrun.go){target="_blank"}
-- Python：[`NovruzCTF_Speedrun.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Speedrun.py){target="_blank"}
+- Go：[`NovruzCTF_Speedrun.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Speedrun.go){target="_blank"}
+- Python：[`NovruzCTF_Speedrun.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Speedrun.py){target="_blank"}
 
 ## 命令行提取关键数据（无 GUI）
 

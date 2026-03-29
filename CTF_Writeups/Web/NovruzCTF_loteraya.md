@@ -101,8 +101,8 @@ Base64 解码 `session` cookie：
 - `cm_tool/` - cookie-monster 工具仓库
 
 ## 脚本归档
-- Go：[`NovruzCTF_loteraya.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_loteraya.go){target="_blank"}
-- Python：[`NovruzCTF_loteraya.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_loteraya.py){target="_blank"}
+- Go：[`NovruzCTF_loteraya.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_loteraya.go){target="_blank"}
+- Python：[`NovruzCTF_loteraya.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_loteraya.py){target="_blank"}
 
 ## 待尝试的方向
 

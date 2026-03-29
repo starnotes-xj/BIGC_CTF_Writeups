@@ -77,17 +77,17 @@ r2 -q -c "aaa; afl~xor_decrypt; afl~main" novruz_rev_zoktay
 - file（确认 ELF 类型）
 
 ## 脚本归档
-- Go：[`NovruzCTF_Novruz_Reverse_by_Zoktay.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Novruz_Reverse_by_Zoktay.go){target="_blank"}
-- Python：[`NovruzCTF_Novruz_Reverse_by_Zoktay.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruz_Reverse_by_Zoktay.py){target="_blank"}
+- Go：[`NovruzCTF_Novruz_Reverse_by_Zoktay.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Novruz_Reverse_by_Zoktay.go){target="_blank"}
+- Python：[`NovruzCTF_Novruz_Reverse_by_Zoktay.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruz_Reverse_by_Zoktay.py){target="_blank"}
 
 **额外版本（调用 Radare2）**
-- Go：[`NovruzCTF_Novruz_Reverse_by_Zoktay_r2.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Novruz_Reverse_by_Zoktay_r2.go){target="_blank"}
-- Python：[`NovruzCTF_Novruz_Reverse_by_Zoktay_r2.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruz_Reverse_by_Zoktay_r2.py){target="_blank"}
+- Go：[`NovruzCTF_Novruz_Reverse_by_Zoktay_r2.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Novruz_Reverse_by_Zoktay_r2.go){target="_blank"}
+- Python：[`NovruzCTF_Novruz_Reverse_by_Zoktay_r2.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruz_Reverse_by_Zoktay_r2.py){target="_blank"}
 
 **额外版本（调用 Ghidra Headless）**
-- Go：[`NovruzCTF_Novruz_Reverse_by_Zoktay_ghidra.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Novruz_Reverse_by_Zoktay_ghidra.go){target="_blank"}
-- Python：[`NovruzCTF_Novruz_Reverse_by_Zoktay_ghidra.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruz_Reverse_by_Zoktay_ghidra.py){target="_blank"}
-- Ghidra 脚本：[`NovruzCTF_Novruz_Reverse_by_Zoktay_ghidra_FindXorKey.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruz_Reverse_by_Zoktay_ghidra_FindXorKey.py){target="_blank"}
+- Go：[`NovruzCTF_Novruz_Reverse_by_Zoktay_ghidra.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Novruz_Reverse_by_Zoktay_ghidra.go){target="_blank"}
+- Python：[`NovruzCTF_Novruz_Reverse_by_Zoktay_ghidra.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruz_Reverse_by_Zoktay_ghidra.py){target="_blank"}
+- Ghidra 脚本：[`NovruzCTF_Novruz_Reverse_by_Zoktay_ghidra_FindXorKey.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruz_Reverse_by_Zoktay_ghidra_FindXorKey.py){target="_blank"}
 
 > 脚本用于校验附件并输出已还原的 flag；逆向过程使用成熟工具完成。
 

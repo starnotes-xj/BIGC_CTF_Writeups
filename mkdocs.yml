@@ -1,5 +1,5 @@
 site_name: BIGC CTF Writeups
-site_url: https://starnotes-xj.github.io/
+site_url: https://starnotes-xj.github.io/BIGC_CTF_Writeups/
 site_description: CTF 竞赛解题记录与学习笔记
 site_author: BIGC CTF Team
 
@@ -81,7 +81,7 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/your-username
+      link: https://github.com/starnotes-xj/BIGC_CTF_Writeups
       name: GitHub
   generator: false
   # Giscus 评论配置 - 需要替换为你的实际值

@@ -178,8 +178,8 @@ func main() {
 - zsteg — 可能的 LSB/通道分析（可选）
 
 ## 脚本归档
-- Go：[`NovruzCTF_one_in_million.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_one_in_million.go){target="_blank"}
-- Python：[`NovruzCTF_one_in_million.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_one_in_million.py){target="_blank"}
+- Go：[`NovruzCTF_one_in_million.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_one_in_million.go){target="_blank"}
+- Python：[`NovruzCTF_one_in_million.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_one_in_million.py){target="_blank"}
 
 ## 命令行提取关键数据（无 GUI）
 

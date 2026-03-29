@@ -71,8 +71,8 @@ novruzctf{Ch41n1ng_MD5_L00s3_C0mp4r1s0n_4nd_SSTI_w1th_N3w1ine_Byp4ss}
 - 命令行 `curl` / `python` 辅助验证与提取
 
 ## 脚本归档
-- Go：[`NovruzCTF_Novruz_Secret_Keeper.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Novruz_Secret_Keeper.go){target="_blank"}
-- Python：[`NovruzCTF_Novruz_Secret_Keeper.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruz_Secret_Keeper.py){target="_blank"}
+- Go：[`NovruzCTF_Novruz_Secret_Keeper.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Novruz_Secret_Keeper.go){target="_blank"}
+- Python：[`NovruzCTF_Novruz_Secret_Keeper.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruz_Secret_Keeper.py){target="_blank"}
 
 ## 推荐工具与优化解题流程
 根据扩展计划，Web 题优先使用现成工具，Crypto 用自研工具包：

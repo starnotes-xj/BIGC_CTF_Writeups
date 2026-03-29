@@ -123,8 +123,8 @@ CBC-MAC **不是**长度安全的 MAC。对于变长消息，攻击者知道 $\t
 - netcat (`nc`) — 连接远程服务
 
 ## 脚本归档
-- Go：[`NovruzCTF_Echoes_of_the_Serpent.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Echoes_of_the_Serpent.go){target="_blank"}
-- Python：[`echoes_of_the_serpent.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/echoes_of_the_serpent.py){target="_blank"}
+- Go：[`NovruzCTF_Echoes_of_the_Serpent.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Echoes_of_the_Serpent.go){target="_blank"}
+- Python：[`echoes_of_the_serpent.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/echoes_of_the_serpent.py){target="_blank"}
 
 ## 命令行提取关键数据（无 GUI）
 
@@ -183,5 +183,5 @@ echo -e "68656c6c6f5f776f726c64000000000010897b807f777176b974864b443a60ad\n162cb
 
 ### Go 脚本（可选）
 - **安装**：Go 1.25+
-- **详细步骤**：见 [`echoes_of_the_serpent.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/echoes_of_the_serpent.go){target="_blank"}
+- **详细步骤**：见 [`echoes_of_the_serpent.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/echoes_of_the_serpent.go){target="_blank"}
 - **优势**：类型安全，适合集成到 CTF 工具集

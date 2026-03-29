@@ -200,8 +200,8 @@ FLOOR (IEEE 754 精度特性)
 | IEEE 754 数学 | 浮点精度特性构造 FLOOR 函数 |
 
 ## 脚本归档
-- Go：[`NovruzCTF_Floating in Samani.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Floating%20in%20Samani.go){target="_blank"}
-- Python：[`NovruzCTF_Floating in Samani.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Floating%20in%20Samani.py){target="_blank"}
+- Go：[`NovruzCTF_Floating in Samani.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Floating%20in%20Samani.go){target="_blank"}
+- Python：[`NovruzCTF_Floating in Samani.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Floating%20in%20Samani.py){target="_blank"}
 
 ## 命令行提取关键数据（无 GUI）
 

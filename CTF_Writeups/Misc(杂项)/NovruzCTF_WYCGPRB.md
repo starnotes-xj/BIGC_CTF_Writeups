@@ -260,8 +260,8 @@ SSTV 是一种通过音频信号传输静态图像的技术，广泛用于业余
 | 零交叉法频率估计 | 从时域信号提取瞬时频率 |
 
 ## 脚本归档
-- Go：[`NovruzCTF_WYCGPRB.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_WYCGPRB.go){target="_blank"}
-- Python：[`NovruzCTF_WYCGPRB.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_WYCGPRB.py){target="_blank"}
+- Go：[`NovruzCTF_WYCGPRB.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_WYCGPRB.go){target="_blank"}
+- Python：[`NovruzCTF_WYCGPRB.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_WYCGPRB.py){target="_blank"}
 
 ## 命令行提取关键数据（无 GUI）
 

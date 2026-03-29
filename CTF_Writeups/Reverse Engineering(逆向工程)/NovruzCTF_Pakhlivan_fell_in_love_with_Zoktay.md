@@ -192,8 +192,8 @@ novruzCTF{ea9d371ee29e03cf04054bc1154a8b0b4513614d246fe4653adc7e03f4a2ac65}
 - ctf_tools/crypto — RC4 解密验证（可选）
 
 ## 脚本归档
-- Go：[`NovruzCTF_Pakhlivan_fell_in_love_with_Zoktay.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Pakhlivan_fell_in_love_with_Zoktay.go){target="_blank"}
-- Python：[`NovruzCTF_Pakhlivan_fell_in_love_with_Zoktay.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Pakhlivan_fell_in_love_with_Zoktay.py){target="_blank"}
+- Go：[`NovruzCTF_Pakhlivan_fell_in_love_with_Zoktay.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Pakhlivan_fell_in_love_with_Zoktay.go){target="_blank"}
+- Python：[`NovruzCTF_Pakhlivan_fell_in_love_with_Zoktay.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Pakhlivan_fell_in_love_with_Zoktay.py){target="_blank"}
 
 ## 推荐工具与优化解题流程
 

@@ -244,8 +244,8 @@ pdf @ main.main
 - **手动 x86-64 反汇编** — 在无 capstone/IDA 环境下手动解码机器码
 
 ## 脚本归档
-- Go：[`NovruzCTF_Novruz Ritual.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Novruz%20Ritual.go){target="_blank"}
-- Python：[`NovruzCTF_Novruz Ritual.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruz%20Ritual.py){target="_blank"}
+- Go：[`NovruzCTF_Novruz Ritual.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Novruz%20Ritual.go){target="_blank"}
+- Python：[`NovruzCTF_Novruz Ritual.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_Novruz%20Ritual.py){target="_blank"}
 
 ## 推荐工具与优化解题流程
 

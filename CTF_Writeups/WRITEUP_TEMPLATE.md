@@ -58,8 +58,8 @@
 - [工具 2] — [用途]
 
 ## 脚本归档
-- Go：[`[题目名].go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/[题目名].go){target="_blank"}
-- Python：[`[题目名].py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/[题目名].py){target="_blank"}
+- Go：[`[题目名].go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/[题目名].go){target="_blank"}
+- Python：[`[题目名].py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/[题目名].py){target="_blank"}
 - 备注：未解/进行中如无脚本，标注 “待补” 并给出预期文件名
 
 ## 命令行提取关键数据（无 GUI）

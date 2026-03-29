@@ -121,8 +121,8 @@ cat readme.txt(线索指向/var/backups) → cat sys_restore.log(提示隐藏文
 - 内置 shell 命令 (`ls -a`, `cat`, `cd`) — 文件系统探索
 
 ## 脚本归档
-- Go：[`NovruzCTF_terminal.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_terminal.go){target="_blank"}
-- Python：[`NovruzCTF_terminal.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_terminal.py){target="_blank"}
+- Go：[`NovruzCTF_terminal.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_terminal.go){target="_blank"}
+- Python：[`NovruzCTF_terminal.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_terminal.py){target="_blank"}
 
 ## 命令行提取关键数据（无 GUI）
 

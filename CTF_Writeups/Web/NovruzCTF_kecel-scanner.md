@@ -273,8 +273,8 @@ curl -s http://95.111.234.103:5050/api/mine
 **推荐流程**：curl/Burp 复现 SSRF → ffuf 枚举内网服务 → LFI 验证与信息链收集 → 待补最终 flag。
 
 ## 脚本归档
-- Go：[`NovruzCTF_kecel-scanner.go` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_go/NovruzCTF_kecel-scanner.go){target="_blank"}
-- Python：[`NovruzCTF_kecel-scanner.py` :material-open-in-new:](https://github.com/starnotes-xj/starnotes-xj.github.io/blob/main/CTF_Writeups/scripts_python/NovruzCTF_kecel-scanner.py){target="_blank"}
+- Go：[`NovruzCTF_kecel-scanner.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_kecel-scanner.go){target="_blank"}
+- Python：[`NovruzCTF_kecel-scanner.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/NovruzCTF_kecel-scanner.py){target="_blank"}
 
 ## 使用的工具
 
