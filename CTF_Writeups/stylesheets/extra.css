@@ -58,21 +58,31 @@ body {
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--cyb-border);
   box-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+  color: #ffffff !important;
 }
 
-/* Force white text everywhere in header */
+/* Force ALL header children to inherit white text */
+.md-header * {
+  color: inherit !important;
+}
+
 .md-header__title,
 .md-header__topic,
 .md-header .md-ellipsis {
-  color: #ffffff !important;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
 
+/* Page subtitle (second topic) in muted color */
 .md-header__topic + .md-header__topic,
-.md-header__topic + .md-header__topic .md-ellipsis {
+.md-header__topic + .md-header__topic * {
   color: var(--cyb-text-muted) !important;
   font-weight: 400;
+}
+
+/* Search input text stays readable */
+.md-header .md-search__input {
+  color: var(--cyb-text) !important;
 }
 
 .md-header__button {
