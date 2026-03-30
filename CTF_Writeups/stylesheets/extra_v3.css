@@ -138,6 +138,16 @@ body {
     font-size: 0.82rem;
   }
 
+  /* 避免当前页在抽屉中出现“标签+链接”双份显示（如：首页出现两次） */
+  [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__link[for="__toc"] {
+    display: none !important;
+  }
+
+  /* 避免分组标题在抽屉中重复显示（如：Web / WEB） */
+  [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__item--nested > .md-nav > .md-nav__title {
+    display: none !important;
+  }
+
   /* 子导航默认收起，点击分类名展开 */
   [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__item--nested > .md-nav {
     display: none;
