@@ -109,7 +109,7 @@ body {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
-    width: 12.1rem !important;
+    width: 16.5rem !important;
     height: 100vh !important;
     z-index: 150 !important;
     background: var(--cyb-bg-surface) !important;
@@ -120,25 +120,50 @@ body {
     padding-top: 3.6rem;
   }
 
-  /* 抽屉打开时，强制显示被桌面端隐藏的导航项（桌面端用tabs替代，导航项默认hidden） */
+  /* 抽屉打开时，强制显示被桌面端隐藏的导航项 */
   [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__title {
     display: block !important;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.7rem;
   }
 
   [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__item {
     display: block !important;
+    border-bottom: 1px solid var(--cyb-border);
   }
 
   [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__link {
     display: flex !important;
+    padding: 0.5rem 0.8rem !important;
+    font-size: 0.82rem;
   }
 
+  /* 子导航默认收起，点击分类名展开 */
   [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__item--nested > .md-nav {
     display: none;
   }
 
   [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__item--nested > .md-toggle:checked ~ .md-nav {
     display: block !important;
+    padding-left: 0.6rem;
+    border-left: 2px solid var(--cyb-accent-dim);
+    margin-left: 0.8rem;
+  }
+
+  /* 子导航中的链接样式 */
+  [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__item--nested .md-nav__link {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.6rem !important;
+    color: rgba(255, 255, 255, 0.65) !important;
+  }
+
+  [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__item--nested .md-nav__link:hover {
+    color: var(--cyb-accent) !important;
+  }
+
+  /* 隐藏抽屉内不需要的元素 */
+  [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav--secondary {
+    display: none !important;
   }
 
   /* 遮罩层由 JS 创建（label for="__drawer"），点击可关闭抽屉 */
