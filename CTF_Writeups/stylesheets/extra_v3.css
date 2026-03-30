@@ -120,6 +120,27 @@ body {
     padding-top: 3.6rem;
   }
 
+  /* 抽屉打开时，强制显示被桌面端隐藏的导航项（桌面端用tabs替代，导航项默认hidden） */
+  [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__title {
+    display: block !important;
+  }
+
+  [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__item {
+    display: block !important;
+  }
+
+  [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__link {
+    display: flex !important;
+  }
+
+  [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__item--nested > .md-nav {
+    display: none;
+  }
+
+  [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary .md-nav__item--nested > .md-toggle:checked ~ .md-nav {
+    display: block !important;
+  }
+
   /* 遮罩层由 JS 创建（label for="__drawer"），点击可关闭抽屉 */
   .cyb-drawer-backdrop {
     display: none;
