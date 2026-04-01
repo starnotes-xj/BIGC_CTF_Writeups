@@ -90,7 +90,7 @@ output_100 = 11482
 ## 命令行提取关键数据（无 GUI）
 
 ```bash
-python3 CTF_Writeups/scripts_python/GenomeRand_LCG.py
+python3 CTF_Writeups/scripts_python/HackForAChange2026March_UN_SDG3_GenomeRand_LCG.py
 # 或
 # go run CTF_Writeups/scripts_go/HackForAChange2026March_UN_SDG3_GenomeRand_LCG.go
 ```
