@@ -111,12 +111,16 @@ nav:
       - Web/NovruzCTF_waf.md
       - Web/NovruzCTF_Novruz_Secret_Keeper.md
       - Web/NovruzCTF_The_Ghost_inside_the_Machine.md
+      - Web/kashiCTF_You_may_have_the_Flag.md
   - 密码学:
       - "Cryptography(\u5BC6\u7801\u5B66)/NovruzCTF_Echoes_of_the_Serpent.md"
       - "Cryptography(\u5BC6\u7801\u5B66)/NovruzCTF_The_Magical_Meal.md"
       - "Cryptography(\u5BC6\u7801\u5B66)/HackForAChange2026March_Patient_Zero.md"
       - "Cryptography(\u5BC6\u7801\u5B66)/HackForAChange2026March_Encrypted_Audit_Logs.md"
       - "Cryptography(\u5BC6\u7801\u5B66)/HackForAChange2026March_UN_SDG3_GenomeRand_LCG.md"
+      - "Cryptography(\u5BC6\u7801\u5B66)/kashiCTF_Secret_of_Mahabharata.md"
+      - "Cryptography(\u5BC6\u7801\u5B66)/kashiCTF2026_Efficient.md"
+      - "Cryptography(\u5BC6\u7801\u5B66)/kashiCTF_Broadcast.md"
   - 逆向工程:
       - "Reverse Engineering(\u9006\u5411\u5DE5\u7A0B)/NovruzCTF_Novruz_Reverse_by_Zoktay.md"
       - "Reverse Engineering(\u9006\u5411\u5DE5\u7A0B)/NovruzCTF_Pakhlivan_fell_in_love_with_Zoktay.md"
@@ -131,6 +135,7 @@ nav:
   - 比赛:
       - events/index.md
       - NovruzCTF 2026: events/NovruzCTF_2026/index.md
+      - kashiCTF: events/kashiCTF/index.md
       - 历史参赛记录: history/competitions.md
   - 标签: tags.md
   - 模板: WRITEUP_TEMPLATE.md

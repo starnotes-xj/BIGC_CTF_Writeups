@@ -21,4 +21,14 @@ hide:
 
     [:octicons-arrow-right-24: 查看全部 Writeups](NovruzCTF_2026/index.md)
 
+-   :material-trophy:{ .lg .middle } __kashiCTF 2026__
+
+    ---
+
+    Crypto / ...
+
+    2026 年 4 月
+
+    [:octicons-arrow-right-24: 查看全部 Writeups](kashiCTF/index.md)
+
 </div>
