@@ -1,10 +1,10 @@
-# CPCTF - Ultra Janken Tournament Writeup
+# CPCTF - mod N Janken Writeup
 
-> 原题名没有和附件一起单独保存，本文按服务横幅暂记为 `Ultra Janken Tournament`。
+> 题目原文：咱们来玩石头剪刀布吧！平局被取消了，因为毫无意义。
 
 ## 题目信息
 - **比赛**: CPCTF
-- **题目**: Ultra Janken Tournament
+- **题目**: mod N Janken
 - **类别**: Crypto
 - **难度**: 中等
 - **附件/URL**: `server.py`、`nc 133.88.122.244 32035`

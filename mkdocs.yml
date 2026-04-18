@@ -165,6 +165,7 @@ nav:
   - PPC:
       - PPC/index.md
       - PPC/CPCTF_Sign_up_for_traP.md
+      - PPC/CPCTF_Modulo_Equation.md
       - PPC/NovruzCTF_Floating_in_Samani.md
   - 比赛:
       - events/index.md

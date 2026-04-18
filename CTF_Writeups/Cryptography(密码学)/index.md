@@ -22,7 +22,7 @@ title: 密码学分类索引
 | Bitwise Scrumble | Writeup | [查看 Writeup](CPCTF_Bitwise_Scrumble.md) |
 | Dualcast | Writeup | [查看 Writeup](CPCTF_Dualcast.md) |
 | Anomaly 2 | Writeup | [查看 Writeup](CPCTF_Anomaly_2.md) |
-| Ultra Janken Tournament | Writeup | [查看 Writeup](CPCTF_Ultra_Janken_Tournament.md) |
+| mod N Janken | Writeup | [查看 Writeup](CPCTF_Ultra_Janken_Tournament.md) |
 | Very Exciting | Writeup | [查看 Writeup](CPCTF_Very_Exciting.md) |
 | Janken Master | Writeup | [查看 Writeup](CPCTF_Janken_Master.md) |
 | Secret of Mahabharata | Writeup | [查看 Writeup](kashiCTF_Secret_of_Mahabharata.md) |
