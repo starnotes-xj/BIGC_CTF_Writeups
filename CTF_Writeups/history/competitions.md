@@ -11,7 +11,7 @@
 | NovruzCTF 2026 | 2026-03-28 13:00 ～ 2026-03-29 13:00 | https://canyouhack.org/（QarabagTeam） | 团队；Jeopardy（Pwn/Web/逆向/密码学/取证等） | 幻方队（星记、yuyingqi、youfeng）；我也没有key（WANGliulan） | 队伍24名；个人18名 | 延迟导致flag无法获取 | 需准备欧洲低延迟VPS；公共费用313.80 | — |
 | Hack For A Change 2026 March | 2026-03 | 待补 | 待补 | 待补 | 待补 | Patient Zero / Encrypted Audit Logs / GenomeRand | 裸 RSA、日志编码、LCG 状态恢复 | — |
 | kashiCTF 2026 | 2026-04-03 12:00 ～ 2026-04-04 12:00 (UTC) | [kashictf.iitbhucybersec.in](https://kashictf.iitbhucybersec.in/)（IIT(BHU)CyberSec / Codefest） | 团队；Jeopardy | 待补 | 待补 | — | — | [CTFtime](https://ctftime.org/event/3150/) |
-| CPCTF | 2026-04-17 11:00 UTC ～ 2026-04-19 11:00 UTC | [cpctf.space](https://cpctf.space/)（traP） | 个人；Jeopardy（Online） | 待补 | 待补 | Dualcast / Parameter Mixup / Ultra Janken Tournament / Very Exciting / hidden / L0v3 PDF / killionaire | 入门字符串检索题、常规密码题、PDF 杂项题与业务逻辑型 Pwn 并存，先按题型分流更高效 | [CTFtime](https://ctftime.org/event/3077/) |
+| CPCTF | 2026-04-17 11:00 UTC ～ 2026-04-19 11:00 UTC | [cpctf.space](https://cpctf.space/)（traP） | 个人；Jeopardy（Online） | 待补 | 待补 | Bitwise Scrumble / Dualcast / Anomaly 2 / Ultra Janken Tournament / Very Exciting / Janken Master / hidden / L0v3 PDF / killionaire / Sign up for traP | 入门字符串检索题、常规密码题、PRNG 初始化题、PDF 杂项题、PPC 与业务逻辑型 Pwn 并存，先按题型分流更高效 | [CTFtime](https://ctftime.org/event/3077/) |
 | MetaCTF | 待补 | 待补 | 待补 | 待补 | 待补 | Physics Notes（Crypto / 文本隐写） / pwnMe（Pwn / 格式化字符串） / Teaching Bricks（Pwn / Ret2win） | 文本首尾字符提取；格式化字符串任意读写；识别 win 地址泄露并完成 ret2win | — |
 | UMassCTF 2026 | 待补 | 待补 | 待补 | 待补 | 待补 | The Accursed Lego Bin（Crypto / RSA） | 裸 RSA + 可逆随机置换 | — |
 | VishwaCTF 2026 | 待补 | 待补 | 待补 | 待补 | 待补 | — | — | — |
@@ -68,18 +68,22 @@
 | 待补 | 待补 | — |
 
 - **题目/问题**：
+  - Bitwise Scrumble（Crypto / bitwise 真值表）
   - Dualcast（Crypto / 编码还原）
-  - Parameter Mixup（Crypto / 参数恢复）
+  - Anomaly 2（Crypto / 特殊 RSA 模数分解）
   - Ultra Janken Tournament（Crypto / 伪随机与博弈）
   - Very Exciting（Crypto / 数学恢复）
+  - Janken Master（Crypto / xoroshiro128+ 全零状态）
   - hidden（Reverse / strings）
   - L0v3 PDF（Misc / PDF 隐写）
   - killionaire（Pwn / 负数下注逻辑漏洞）
+  - Sign up for traP（PPC / 正则校验）
 - **复盘要点**：
-  - CPCTF 当前已归档题目横跨 Crypto、Reverse、Misc 与 Pwn，先按题型做工具分流更高效
+  - CPCTF 当前已归档题目横跨 Crypto、Reverse、Misc、Pwn 与 PPC，先按题型做工具分流更高效
   - Reverse 入门题应优先执行 `file` / `strings` 等低成本静态侦察，再决定是否进入反编译阶段
   - 面对 PDF 附件时应优先检查元数据、文本层与隐藏对象，而不是只盯图片页内容
   - 业务逻辑型 Pwn 题要先检查金额、次数、边界值等基础不变量是否被破坏
+  - 看到 PRNG 提示时，也要先确认初始化是否满足算法前置条件，而不是直接进入状态恢复
 - **相关附件/链接**：
   - [CTFtime Event #3077](https://ctftime.org/event/3077/)
   - [Official Platform](https://cpctf.space/)
@@ -180,5 +184,3 @@
   - 面对多层隐写链路时，按“容器结构 → 元数据 → 位平面 → 频域”顺序拆解更稳定
 - **相关附件/链接**：
   - [CTFtime Event #3202](https://ctftime.org/event/3202/)
-
-

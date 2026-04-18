@@ -6,8 +6,8 @@ hide:
 # CPCTF
 
 > **时间**: 2026-04-17 11:00 UTC ～ 2026-04-19 11:00 UTC
-> **题目数量**: 7（当前已收录）
-> **类别**: Crypto / Reverse / Misc / Pwn
+> **题目数量**: 10（当前已收录）
+> **类别**: Crypto / Reverse / Misc / Pwn / PPC
 
 ## 相关链接
 
@@ -20,10 +20,12 @@ hide:
 
 | 题目 | 难度 | 状态 |
 |------|------|------|
+| [Bitwise Scrumble](../../Cryptography(密码学)/CPCTF_Bitwise_Scrumble.md) | 简单 | :material-check-circle: 已解 |
 | [Dualcast](../../Cryptography(密码学)/CPCTF_Dualcast.md) | 简单 | :material-check-circle: 已解 |
-| [Parameter Mixup](../../Cryptography(密码学)/CPCTF_Parameter_Mixup.md) | 简单 | :material-check-circle: 已解 |
+| [Anomaly 2](../../Cryptography(密码学)/CPCTF_Anomaly_2.md) | 简单 | :material-check-circle: 已解 |
 | [Ultra Janken Tournament](../../Cryptography(密码学)/CPCTF_Ultra_Janken_Tournament.md) | 中等 | :material-check-circle: 已解 |
 | [Very Exciting](../../Cryptography(密码学)/CPCTF_Very_Exciting.md) | 简单 | :material-check-circle: 已解 |
+| [Janken Master](../../Cryptography(密码学)/CPCTF_Janken_Master.md) | 简单 | :material-check-circle: 已解 |
 
 ## Reverse
 
@@ -42,3 +44,9 @@ hide:
 | 题目 | 难度 | 状态 |
 |------|------|------|
 | [killionaire](../../Pwn/CPCTF_killionaire.md) | 简单 | :material-check-circle: 已解 |
+
+## PPC
+
+| 题目 | 难度 | 状态 |
+|------|------|------|
+| [Sign up for traP](../../PPC/CPCTF_Sign_up_for_traP.md) | 简单 | :material-check-circle: 已解 |
