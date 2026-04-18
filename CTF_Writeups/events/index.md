@@ -41,6 +41,16 @@ hide:
 
     [:octicons-arrow-right-24: 查看全部 Writeups](kashiCTF/index.md)
 
+-   :material-trophy:{ .lg .middle } __CPCTF__
+
+    ---
+
+    **7 题** — Crypto / Reverse / Misc / Pwn
+
+    2026 年 4 月 17 日 - 19 日
+
+    [:octicons-arrow-right-24: 查看全部 Writeups](CPCTF/index.md)
+
 -   :material-trophy:{ .lg .middle } __putcCTF__
 
     ---

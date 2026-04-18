@@ -4,7 +4,7 @@ title: 密码学分类索引
 
 # 密码学
 
-当前分类共收录 **16 篇文章**，包含 RSA、古典密码、实现漏洞、隐写与知识点专题。
+当前分类共收录 **20 篇文章**，包含 RSA、古典密码、实现漏洞、隐写与知识点专题。
 
 ## 文章列表
 
@@ -19,6 +19,10 @@ title: 密码学分类索引
 | SafeShell | Writeup | [查看 Writeup](ACSC2026Qualification_SafeShell.md) |
 | Efficient | Writeup | [查看 Writeup](kashiCTF2026_Efficient.md) |
 | Broadcast | Writeup | [查看 Writeup](kashiCTF_Broadcast.md) |
+| Dualcast | Writeup | [查看 Writeup](CPCTF_Dualcast.md) |
+| Parameter Mixup | Writeup | [查看 Writeup](CPCTF_Parameter_Mixup.md) |
+| Ultra Janken Tournament | Writeup | [查看 Writeup](CPCTF_Ultra_Janken_Tournament.md) |
+| Very Exciting | Writeup | [查看 Writeup](CPCTF_Very_Exciting.md) |
 | Secret of Mahabharata | Writeup | [查看 Writeup](kashiCTF_Secret_of_Mahabharata.md) |
 | Physics Notes | Writeup | [查看 Writeup](MetaCTF_Physics_Notes.md) |
 | Echoes of the Serpent | Writeup | [查看 Writeup](NovruzCTF_Echoes_of_the_Serpent.md) |
