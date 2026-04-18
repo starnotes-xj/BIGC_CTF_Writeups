@@ -4,7 +4,7 @@ title: Web 分类索引
 
 # Web
 
-当前分类共收录 **13 篇文章**，涵盖 SSRF、WAF、逻辑漏洞、文件读取、客户端状态篡改、Python 沙箱逃逸与常规 Web 题。
+当前分类共收录 **14 篇文章**，涵盖 SSRF、WAF、逻辑漏洞、文件读取、客户端状态篡改、Python 沙箱逃逸与常规 Web 题。
 
 ## 文章列表
 
@@ -23,3 +23,4 @@ title: Web 分类索引
 | FasterTravel | [查看 Writeup](ACSC2026Qualification_FasterTravel.md) |
 | Wibe4Win | [查看 Writeup](ACSC2026Qualification_Wibe4Win.md) |
 | Lorem Ipsum Arcanum Invocatum | [查看 Writeup](putcCTF_Lorem_Ipsum_Arcanum_Invocatum.md) |
+| mirage | [查看 Writeup](CPCTF_mirage.md) |
