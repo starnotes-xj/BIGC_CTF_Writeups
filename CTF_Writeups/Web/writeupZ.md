@@ -21,7 +21,7 @@
 - `GET /api/flag` 需要已登录。
 - 当前用户的 `plan` 必须等于 `"premium"`。
 
-对应后端逻辑在 `server/src/index.ts`：
+对应后端逻辑在题目附件源码 `server/src/index.ts`：
 
 ```ts
 app.get("/api/flag", async (c) => {
