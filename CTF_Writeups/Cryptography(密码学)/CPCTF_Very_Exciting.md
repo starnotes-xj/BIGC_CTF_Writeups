@@ -47,16 +47,19 @@ return bytes([a ^ b for a, b in zip(data, keystream)])
 
 - 因此可以写成：
 
-```text
-C_flag = P_flag XOR KS(secret_key, exciting_iv)
-C_user = P_user XOR KS(secret_key, very_exciting_iv)
-```
+$$
+C_{\mathrm{flag}} = P_{\mathrm{flag}} \oplus KS(\mathrm{secret\_key}, \mathrm{exciting\_iv})
+$$
+
+$$
+C_{\mathrm{user}} = P_{\mathrm{user}} \oplus KS(\mathrm{secret\_key}, \mathrm{very\_exciting\_iv})
+$$
 
 - 只要我们把 `very_exciting_iv` 设成打印出来的 `exciting_iv`，就有：
 
-```text
-KS(secret_key, very_exciting_iv) = KS(secret_key, exciting_iv)
-```
+$$
+KS(\mathrm{secret\_key}, \mathrm{very\_exciting\_iv}) = KS(\mathrm{secret\_key}, \mathrm{exciting\_iv})
+$$
 
 - 也就是说，服务把“加密 flag 时用到的同一段密钥流”重新开放给了攻击者调用。
 
@@ -64,16 +67,16 @@ KS(secret_key, very_exciting_iv) = KS(secret_key, exciting_iv)
 - 既然能重用同一段密钥流，最直接的做法就是提交**与 flag 密文等长的全 0 明文**。
 - 对全 0 明文而言：
 
-```text
-C_zero = 00...00 XOR KS = KS
-```
+$$
+C_{0} = 0\ldots0 \oplus KS = KS
+$$
 
 - 服务返回的密文就不再是“密文”，而是裸露的 keystream。
 - 最后再异或回去即可恢复 flag：
 
-```text
-P_flag = C_flag XOR KS
-```
+$$
+P_{\mathrm{flag}} = C_{\mathrm{flag}} \oplus KS
+$$
 
 - 题目后面那个“茶神签”会再调用一次 `nextrand()`，但这发生在我们拿到密钥流之后，对解题没有任何影响。
 

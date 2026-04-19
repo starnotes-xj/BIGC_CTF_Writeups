@@ -52,41 +52,41 @@ winner = clash_power % PARTICIPANTS
 - 因为 `luck_pattern[j] ∈ {0,1}`，所以上面其实就是“选中列的 64-bit 数按位异或”。
 
 ### 2. 关键突破点一：把 100 个隐藏选手整体消掉
-- 设 `T` 表示 `nextrand()` 诱导出的 GF(2) 线性变换。
-- 每个隐藏选手第 `j` 列的数都可以写成 `T^j(seed_i)`。
-- 如果我们把某个 120 bit 向量 `l = (l_0, ..., l_119)` 当成 luck pattern，那么 100 个隐藏选手的总贡献可以写成：
+- 设 $T$ 表示 `nextrand()` 诱导出的 GF(2) 线性变换。
+- 每个隐藏选手第 $j$ 列的数都可以写成 $T^j(\mathrm{seed}_i)$。
+- 如果我们把某个 120 bit 向量 $l = (l_0, \ldots, l_{119})$ 当成 luck pattern，那么 100 个隐藏选手的总贡献可以写成：
 
-\[
+$$
 \bigoplus_{i=1}^{100} \bigoplus_{j=0}^{119} l_j T^j(seed_i)
 = \left(\sum_{j=0}^{119} l_j T^j \right)\left(\bigoplus_{i=1}^{100} seed_i\right)
-\]
+$$
 
 - 所以只要满足
 
-\[
+$$
 \sum_{j=0}^{119} l_j T^j = 0
-\]
+$$
 
 就能让这 100 个人的贡献整体变成 0，不需要知道任何隐藏种子。
 
 - 对精确版 `nextrand()` 做线性化后，可以求出一个 64 次消去多项式：
 
-\[
+$$
 \begin{aligned}
 m(x)=&x^{64}+x^{51}+x^{49}+x^{48}+x^{46}+x^{45}+x^{43}+x^{42}+x^{41}+x^{39}+x^{38}\\
 &+x^{35}+x^{34}+x^{33}+x^{32}+x^{31}+x^{30}+x^{23}+x^{21}+x^{20}+x^{17}+x^{16}\\
 &+x^{14}+x^{13}+x^{10}+x^8+x^4+x^3+x^2+1
 \end{aligned}
-\]
+$$
 
-- 因此，只要把 luck pattern 的系数向量限制在所有 `g(x) * m(x)`（`deg g < 56`）组成的线性码里，隐藏 100 人的贡献就会被完全消掉。
+- 因此，只要把 luck pattern 的系数向量限制在所有 $g(x) \cdot m(x)$（$\deg g < 56$）组成的线性码里，隐藏 100 人的贡献就会被完全消掉。
 
 ### 3. 关键突破点二：让自己的 strategy 直接编码 winner
-- 上一步已经把隐藏选手全部消掉了，剩下只需要让**自己的贡献**在 `% 101` 之后等于当前轮的 `player_no`。
-- 如果把合法 codeword 写成 `c(x)=g(x)m(x)`，那么 `g(x)` 的低 8 bit 可以拿来编码一个 `0..255` 的数。
-- 问题在于，由于 `m(x)` 低位还有 `x^2+x^3+x^4`，codeword 的前 8 位并不直接等于 `g_0..g_7`。递推展开后有：
+- 上一步已经把隐藏选手全部消掉了，剩下只需要让**自己的贡献**在 $\bmod\ 101$ 之后等于当前轮的 $\mathrm{player\_no}$。
+- 如果把合法 codeword 写成 $c(x)=g(x)m(x)$，那么 $g(x)$ 的低 8 bit 可以拿来编码一个 $0..255$ 的数。
+- 问题在于，由于 $m(x)$ 低位还有 $x^2+x^3+x^4$，codeword 的前 8 位并不直接等于 $g_0..g_7$。递推展开后有：
 
-\[
+$$
 \begin{aligned}
 g_0 &= c_0 \\
 g_1 &= c_1 \\
@@ -97,7 +97,7 @@ g_5 &= c_5 \oplus c_3 \oplus c_2 \\
 g_6 &= c_6 \oplus c_4 \oplus c_3 \\
 g_7 &= c_7 \oplus c_5 \oplus c_4 \oplus c_0
 \end{aligned}
-\]
+$$
 
 - 所以只要把自己的前 8 个 strategy 值设成这些线性组合对应的系数即可：
 
@@ -107,15 +107,15 @@ g_7 &= c_7 \oplus c_5 \oplus c_4 \oplus c_0
 
 - 其余位置全部填 0。这样对任意合法 codeword，都有：
 
-\[
+$$
 \text{my\_contribution} = g_0 + 2g_1 + 4g_2 + \cdots + 128g_7
-\]
+$$
 
-- 在线时我们只需要在 `0..255` 中挑一个满足
+- 在线时我们只需要在 $0..255$ 中挑一个满足
 
-\[
+$$
 value \bmod 101 = player\_no
-\]
+$$
 
 的值即可。候选最多只有三个：`player_no`、`player_no+101`、`player_no+202`。
 
@@ -123,11 +123,11 @@ value \bmod 101 = player\_no
 - 现在在线问题变成：
   1. 当前随机 `luck_pattern` 已知
   2. 目标 residue（即 `player_no`）已知
-  3. 需要找一个离它最近的合法 codeword，并让该 codeword 对应的 `value % 101 == player_no`
+  3. 需要找一个离它最近的合法 codeword，并让该 codeword 对应的 $\mathrm{value} \bmod 101 = \mathrm{player\_no}$
 
-- 我把 `g_8..g_55` 这 48 个自由变量按高位到低位展开做 beam search：
+- 我把 $g_8..g_{55}$ 这 48 个自由变量按高位到低位展开做 beam search：
   - 每一步只决定一个 message bit 是否置 1
-  - 对应 codeword 掩码通过异或 `x^i m(x)` 的 bitmask 更新
+  - 对应 codeword 掩码通过异或 $x^i m(x)$ 的 bitmask 更新
   - 评分函数不是完整距离，而是“已经被冻结、未来变量再也不会影响的那些输出位”的实际汉明距离
 
 - 这个剪枝很关键：它让搜索宽度只用 `1000` 就足够稳定。
@@ -209,13 +209,13 @@ python CTF_Writeups/scripts_python/CPCTF_Ultra_Janken_Tournament.py --host 133.8
 
 ### 推荐流程
 
-**推荐流程**：先把 `nextrand` 线性化并求出消去多项式 -> 构造合法 luck pattern 线性码 -> 设计自己的 strategy 把低 8 个 message bit 映射成 `0..255` -> 在线对每轮随机 pattern 做最近码字 beam search -> 自动交互拿 flag。
+**推荐流程**：先把 `nextrand` 线性化并求出消去多项式 -> 构造合法 luck pattern 线性码 -> 设计自己的 strategy 把低 8 个 message bit 映射成 $0..255$ -> 在线对每轮随机 pattern 做最近码字 beam search -> 自动交互拿 flag。
 
 ### 工具 A（推荐首选）
 - **安装**：Python 3
 - **详细步骤**：
   1. 预计算 `nextrand` 的 64 维线性关系
-  2. 构造 `g(x)m(x)` 对应的 codeword 掩码
+  2. 构造 $g(x)m(x)$ 对应的 codeword 掩码
   3. 预计算 beam search 的冻结位剪枝掩码
   4. 连接远端并按轮次自动发送所有 `C / index / G`
 - **优势**：从数学建模到远端利用完全一体化，最适合归档复现

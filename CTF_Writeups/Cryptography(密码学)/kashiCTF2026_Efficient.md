@@ -33,11 +33,11 @@ kashiCTF{wh3n_0n3_pr1m3_1s_n0t_3n0ugh_p_squared_1s_w0rs3}
 | `iv` + `flag_ct` | AES-CBC 对称加密层（加密 flag） |
 | `ct2` | 辅助密文（4095 位整数） |
 
-**关键线索**："速度提高了一倍"意味着只生成了一个素数，然后 $n = p^2$（即 $p = q$）。
+**关键线索**：“速度提高了一倍”意味着只生成了一个素数，然后 $n = p^2$，即 $p = q$。
 
 ### 2. 验证 $n = p^2$ 并分解
 
-对 $n$ 开平方根即可得到 $p$：
+对 $n$ 执行一次 $\operatorname{isqrt}(n)$ 即可得到 $p$：
 
 ```python
 from math import isqrt
@@ -87,7 +87,7 @@ flag = unpad(cipher_aes.decrypt(flag_ct), 16)
 ## 攻击链/解题流程总结
 
 ```text
-识别 "速度提高一倍" 暗示 p=q → isqrt(n) 分解 → φ(p²)=p(p-1) 求私钥 d → RSA 解密 ct 得 AES 密钥 → AES-CBC 解密 flag_ct → Flag
+识别“速度提高一倍”暗示 p = q → isqrt(n) 分解 → φ(p^2) = p(p - 1) 求私钥 d → RSA 解密 `ct` 得 AES 密钥 → AES-CBC 解密 `flag_ct` → Flag
 ```
 
 ## 漏洞分析
@@ -117,7 +117,7 @@ flag = unpad(cipher_aes.decrypt(flag_ct), 16)
 ## 使用的工具
 
 - **Python + PyCryptodome** — RSA 解密与 AES-CBC 解密
-- **math.isqrt** — Python 内置整数平方根，用于分解 $n = p^2$
+- **math.isqrt** — Python 内置整数平方根，用于分解满足 $n = p^2$ 的模数
 - **Security MCP Hub** — `crypto_iroot` 分解 $n = p^2$，`crypto_mod_math` 辅助模运算
 
 ## 脚本归档
@@ -155,7 +155,7 @@ python kashiCTF2026_Efficient.py
 
 ### 步骤二：`crypto_mod_math` — 计算 RSA 私钥
 
-使用模逆运算求私钥 $d = e^{-1} \mod \varphi(p^2)$：
+使用模逆运算求私钥 $d = e^{-1} \bmod \varphi(p^2)$：
 
 ```
 调用: crypto_mod_math(
@@ -201,7 +201,7 @@ kashiCTF{wh3n_0n3_pr1m3_1s_n0t_3n0ugh_p_squared_1s_w0rs3}
 |------|----------|----------|------|------|
 | **Security MCP Hub** | 分解 + 模运算 | < 1 秒 | 零代码分解，即时验证完全平方数 | AES 层需配合 CyberChef |
 | **Python + PyCryptodome** | 全流程 | < 1 秒 | 灵活，可处理混合加密 | 需手动编写逻辑 |
-| **RsaCtfTool** | RSA 分析 | 即时 | 自动检测 p=q 等弱点 | 不处理后续 AES 层 |
+| **RsaCtfTool** | RSA 分析 | 即时 | 自动检测 $p=q$ 等弱点 | 不处理后续 AES 层 |
 | **SageMath** | 数论分析 | 即时 | 内置 `is_square()` 等函数 | 对本题杀鸡用牛刀 |
 
 ### 推荐流程
@@ -213,8 +213,8 @@ kashiCTF{wh3n_0n3_pr1m3_1s_n0t_3n0ugh_p_squared_1s_w0rs3}
 - **安装**：`pip install pycryptodome`
 - **详细步骤**：
   1. 从 `output.txt` 提取 $n$、$e$、密文、IV 等参数
-  2. `isqrt(n)` 计算 $p$，验证 $p^2 = n$
-  3. 计算 $\varphi(n) = p(p-1)$，求 $d = e^{-1} \mod \varphi(n)$
+  2. 对 $n$ 执行 $\operatorname{isqrt}(n)$ 计算 $p$，验证 $p^2 = n$
+  3. 计算 $\varphi(n) = p(p-1)$，求 $d = e^{-1} \bmod \varphi(n)$
   4. RSA 解密 `ct` 得到 AES 密钥，AES-CBC 解密 `flag_ct` 得到 flag
 - **优势**：一个脚本搞定全部流程，无需额外依赖
 

@@ -45,7 +45,7 @@ hide:
 
     ---
 
-    **13 题** — Crypto / Reverse / Misc / Pwn / PPC / Web
+    **17 题** — Crypto / Reverse / Misc / Pwn / PPC / Web
 
     2026 年 4 月 17 日 - 19 日
 
@@ -80,6 +80,16 @@ hide:
     时间待补
 
     [:octicons-arrow-right-24: 查看全部 Writeups](UMassCTF_2026/index.md)
+
+-   :material-trophy:{ .lg .middle } __VishwaCTF 2026__
+
+    ---
+
+    **1 题** — Misc
+
+    时间待补
+
+    [:octicons-arrow-right-24: 查看全部 Writeups](VishwaCTF_2026/index.md)
 
 -   :material-trophy:{ .lg .middle } __Hack For A Change 2026 March__
 

@@ -137,12 +137,12 @@ Flag: dach2026{should_have_used_aead_sademoji_f155g8el9sagwql0}
 
 ## 知识点
 - AES-CBC 的可篡改性（bit flipping）
-- `P_i = D_k(C_i) \oplus C_{i-1}` / 首块 `P_0 = D_k(C_0) \oplus IV`
+- $P_i = D_k(C_i) \oplus C_{i-1}$ / 首块 $P_0 = D_k(C_0) \oplus IV$
 - AEAD 与“仅加密”方案的安全差异
 
 ## 使用的工具
 - Python 标准库 `socket` / `re` — 远程交互与密文提取
-- Python 字节运算 — 计算 `IV' = IV ^ orig ^ want`
+- Python 字节运算 — 计算 $IV' = IV \oplus \texttt{orig} \oplus \texttt{want}$
 - 本地阅读 `app.py` — 确认 JSON 结构和 CBC 加解密流程
 
 ## 脚本归档

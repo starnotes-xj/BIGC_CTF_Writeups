@@ -6,7 +6,7 @@ hide:
 # CPCTF
 
 > **时间**: 2026-04-17 11:00 UTC ～ 2026-04-19 11:00 UTC
-> **题目数量**: 13（当前已收录）
+> **题目数量**: 17（当前已收录）
 > **类别**: Crypto / Reverse / Misc / Pwn / PPC / Web
 
 ## 相关链接
@@ -32,6 +32,7 @@ hide:
 | 题目 | 难度 | 状态 |
 |------|------|------|
 | [hidden](../../Reverse Engineering(逆向工程)/CPCTF_hidden.md) | 简单 | :material-check-circle: 已解 |
+| [Out of World](../../Reverse Engineering(逆向工程)/CPCTF_Out_of_World.md) | 简单 | :material-check-circle: 已解 |
 
 ## Misc
 
@@ -39,6 +40,9 @@ hide:
 |------|------|------|
 | [L0v3 PDF](../../Misc(杂项)/CPCTF_L0v3_PDF.md) | 简单 | :material-check-circle: 已解 |
 | [SSH](../../Misc(杂项)/CPCTF_SSH.md) | 简单 | :material-check-circle: 已解 |
+| [jail](../../Misc(杂项)/CPCTF_jail.md) | 简单 | :material-check-circle: 已解 |
+| [Hello LaTeX3!!!](../../Misc(杂项)/CPCTF_Hello_LaTeX3!!!.md) | 简单 | :material-check-circle: 已解 |
+| [QRRRRRRRRRR](../../Misc(杂项)/CPCTF_QR_Generator.md) | 简单 | :material-check-circle: 已解 |
 
 ## Pwn
 

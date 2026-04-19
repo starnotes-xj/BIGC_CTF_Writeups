@@ -30,13 +30,14 @@ MkDocs Material 驱动的 CTF 解题记录站点。文档根目录为 `CTF_Write
 - 脚本归档链接指向 `scripts_go/` 或 `scripts_python/` 下的实际文件
 - 已解题目必须填写完整 Flag
 
-### 3. 更新 mkdocs.yml 导航
+### 3. 维护导航入口
 
-在 `mkdocs.yml` 的 `nav` 对应类别下追加条目。注意：
+`mkdocs.yml` 的 `nav` 只保留顶层栏目入口，不再逐篇追加 writeup 或逐个追加比赛页。注意：
+- 新增普通 writeup 时，**不要**修改 `mkdocs.yml`
+- 新增全新类别时，先创建该类别 `index.md`，再只在 `mkdocs.yml` 中新增该类别入口（放在“比赛”之前）
+- 新增全新比赛时，创建 `CTF_Writeups/events/{比赛名}/index.md`，并更新 `CTF_Writeups/events/index.md` 的比赛卡片列表
 - 路径相对于 `docs_dir`（即 `CTF_Writeups/`）
-- 含中文括号的目录名需用引号包裹并使用 Unicode 转义，参照已有条目格式
-- 新条目追加到该类别列表末尾
-- 如果是全新类别，在 nav 中新增该类别节点（放在"比赛"之前）
+- 含中文括号的目录名需用引号包裹并使用 Unicode 转义，参照已有顶层入口格式
 
 ### 4. 放置附件
 
@@ -56,7 +57,7 @@ MkDocs Material 驱动的 CTF 解题记录站点。文档根目录为 `CTF_Write
 | [题目显示名](../../{类别目录}/{文件名}.md) | 难度 | :material-check-circle: 已解 |
 ```
 
-如果是新比赛的第一道题，创建 `CTF_Writeups/events/{比赛名}/index.md` 索引页，参照 `NovruzCTF_2026/index.md` 格式。同时在 `mkdocs.yml` 的"比赛"导航中添加该索引页。
+如果是新比赛的第一道题，创建 `CTF_Writeups/events/{比赛名}/index.md` 索引页，参照 `NovruzCTF_2026/index.md` 格式。同时在 `CTF_Writeups/events/index.md` 中添加该比赛卡片。
 
 ### 7. 更新历史参赛记录（新比赛时）
 
@@ -70,12 +71,11 @@ MkDocs Material 驱动的 CTF 解题记录站点。文档根目录为 `CTF_Write
 完成上述步骤后，逐项自检：
 
 - [ ] writeup 文件在正确的类别目录中
-- [ ] `mkdocs.yml` nav 已更新
+- [ ] 分类索引页与比赛索引页已更新；如新增类别，`mkdocs.yml` 顶层 nav 已更新
 - [ ] 附件已放入 `files/` 对应目录
 - [ ] writeup 中的附件下载链接和仓库链接指向正确路径
 - [ ] 解题脚本已放入 `scripts_go/` 和/或 `scripts_python/`
 - [ ] writeup 中的脚本归档链接指向正确的 GitHub 路径
-- [ ] 比赛索引页已更新（如适用）
 - [ ] 无死链（附件引用 vs 实际文件一致）
 
 ## 附件完整性校验

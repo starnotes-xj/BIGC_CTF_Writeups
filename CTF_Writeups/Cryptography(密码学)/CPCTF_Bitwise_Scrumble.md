@@ -45,13 +45,13 @@ encrypted_t = format((t ^ ((t | k) & k)), 'x')
 
 ### 2. 关键突破点一
 - 题目提示说“每个比特执行的操作都是独立的”，因此不需要把 `0..9` 的十进制数字整体看成复杂对象。
-- 对单个 bit 设明文 bit 为 `x`，key bit 为 `y`，逐个写真值表。
+- 对单个 bit 设明文 bit 为 $x$，key bit 为 $y$，逐个写真值表。
 
 #### 第一段
 
-\[
+$$
 (x \lor y) \land (x \oplus y)
-\]
+$$
 
 | x | y | x OR y | x XOR y | result |
 |---|---|--------|---------|--------|
@@ -62,15 +62,15 @@ encrypted_t = format((t ^ ((t | k) & k)), 'x')
 
 - 结果等价于：
 
-\[
+$$
 x \oplus y
-\]
+$$
 
 #### 第二段
 
-\[
+$$
 (x \land y) \oplus (x \lor y)
-\]
+$$
 
 | x | y | x AND y | x OR y | result |
 |---|---|---------|--------|--------|
@@ -81,40 +81,40 @@ x \oplus y
 
 - 结果同样等价于：
 
-\[
+$$
 x \oplus y
-\]
+$$
 
 #### 第三段
 
-\[
+$$
 x \oplus ((x \lor y) \land y)
-\]
+$$
 
 - 其中：
 
-\[
+$$
 (x \lor y) \land y = y
-\]
+$$
 
 - 因此第三段直接化简为：
 
-\[
+$$
 x \oplus y
-\]
+$$
 
 ### 3. 关键突破点二
 - 三个加密表达式虽然长得不同，但对每个 bit 来说都等价于：
 
-```text
-encrypted_digit = original_digit ^ key_digit
-```
+$$
+\mathrm{encrypted\_digit} = \mathrm{original\_digit} \oplus \mathrm{key\_digit}
+$$
 
 - XOR 自反，所以解密时再异或同一个 `key_digit`：
 
-```text
-original_digit = encrypted_digit ^ key_digit
-```
+$$
+\mathrm{original\_digit} = \mathrm{encrypted\_digit} \oplus \mathrm{key\_digit}
+$$
 
 - 由于加密输出是十六进制字符，解密时要先把每个字符按 hex nibble 解析：
 
@@ -162,7 +162,7 @@ CPCTF{B1twis3_r0t4t10n!_3tim3s}
 
 ## 知识点
 - bitwise 运算的单 bit 真值表
-- XOR 的自反性质：`a ^ b ^ b = a`
+- XOR 的自反性质：$a \oplus b \oplus b = a$
 - 大整数与字节串转换：`bytes_to_long` / `long_to_bytes`
 
 ## 使用的工具

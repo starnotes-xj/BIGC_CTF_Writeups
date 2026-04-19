@@ -50,45 +50,45 @@ def main():
 |------|------|
 | 允许的 AST 节点 | Module, Expr, BinOp, Add, Sub, Div, Mult, Load, Name, Constant |
 | 允许的变量名 | 仅 `a` 和 `b` |
-| 验证方式 | `int(eval(code)) == a ^ 42`，对所有 `a ∈ [0, 255]` |
+| 验证方式 | `int(eval(code)) == a ^ 42`，对所有 $a \in [0, 255]$ |
 | 不允许 | 函数调用、位运算、比较、下标、属性访问、一元运算符等 |
 
-核心挑战：**用纯算术表达式（+, -, *, /）和常数表示 XOR 运算**。
+核心挑战：**用纯算术表达式（+, -, *, /）和常数表示 $a \oplus 42$。**
 
 ### 2. 关键洞察：IEEE 754 浮点取整技巧
 
 题目名称 "**Floating** in samani above **Metra Veehkim**" 暗示了浮点数（Float）。
 
-核心思路：Python 的 `eval()` 使用 **float64 运算**（IEEE 754 双精度），我们可以利用浮点数的精度特性来实现 `FLOOR` 函数，进而逐位计算 AND 和 XOR。
+核心思路：Python 的 `eval()` 使用 **float64 运算**（IEEE 754 双精度），我们可以利用浮点数的精度特性来实现 $\operatorname{FLOOR}$ 函数，进而逐位计算按位 AND 和 XOR。
 
-#### 2.1 用算术实现 FLOOR
+#### 2.1 用算术实现 $\operatorname{FLOOR}$
 
 IEEE 754 双精度浮点数有 52 位尾数。当一个数落在 $[2^{52}, 2^{53})$ 区间时，浮点数的精度恰好为 1.0 —— 即该范围内的浮点数只能表示整数。
 
 设魔法常数 $C = 3 \times 2^{51} = 6755399441055744$，则：
 
-$$\text{FLOOR}(x) = x - \frac{63}{128} + C - C$$
+$$\operatorname{FLOOR}(x) = x - \frac{63}{128} + C - C$$
 
 **原理**：
 - $x + C$ 将结果推入 $[2^{52}, 2^{53})$ 区间，浮点数自动四舍五入到最近整数
 - 偏移量 $-63/128$ 确保所有可能的小数部分（1/64 的倍数）都被正确向下取整
 - 最后减去 $C$ 还原到原始量级
 
-#### 2.2 用 FLOOR 实现 AND（逐位）
+#### 2.2 用 $\operatorname{FLOOR}$ 实现按位 AND（逐位）
 
 对于单个 bit 位置 $k$：
 
-$$\text{bit}_k(a) = \text{FLOOR}(a / 2^k) \mod 2 = \text{FLOOR}(a / 2^k) - 2 \cdot \text{FLOOR}(a / 2^{k+1})$$
+$$\text{bit}_k(a) = \operatorname{FLOOR}(a / 2^k) \bmod 2 = \operatorname{FLOOR}(a / 2^k) - 2 \cdot \operatorname{FLOOR}(a / 2^{k+1})$$
 
-两个数的 AND 在第 $k$ 位：$\text{bit}_k(a) \cdot \text{bit}_k(42)$
+两个数按位 AND 在第 $k$ 位的贡献为：$\text{bit}_k(a) \cdot \text{bit}_k(42)$
 
 但 42 是常数，我们只需处理 42 中为 1 的位。
 
-#### 2.3 用 AND 实现 XOR
+#### 2.3 用按位 AND 实现 XOR
 
 $$a \oplus 42 = a + 42 - 2 \cdot (a \text{ AND } 42)$$
 
-这是因为：对每一位，`a + b = (a XOR b) + 2*(a AND b)`。
+这是因为：对每一位，$a + b = (a \oplus b) + 2(a \text{ AND } b)$。
 
 ### 3. 展开 42 的二进制
 
@@ -100,11 +100,11 @@ $$a \text{ AND } 42 = 2 \cdot \text{bit}_1(a) + 8 \cdot \text{bit}_3(a) + 32 \cd
 
 代入 XOR 公式并化简：
 
-$$a \oplus 42 = a + 42 - 4 \cdot \text{FLOOR}(a/2) + 8 \cdot \text{FLOOR}(a/4) - 16 \cdot \text{FLOOR}(a/8) + 32 \cdot \text{FLOOR}(a/16) - 64 \cdot \text{FLOOR}(a/32) + 128 \cdot \text{FLOOR}(a/64)$$
+$$a \oplus 42 = a + 42 - 4 \cdot \operatorname{FLOOR}(a/2) + 8 \cdot \operatorname{FLOOR}(a/4) - 16 \cdot \operatorname{FLOOR}(a/8) + 32 \cdot \operatorname{FLOOR}(a/16) - 64 \cdot \operatorname{FLOOR}(a/32) + 128 \cdot \operatorname{FLOOR}(a/64)$$
 
 ### 4. 最终 Payload
 
-将 FLOOR 展开，得到完整的纯算术表达式：
+将 $\operatorname{FLOOR}$ 展开，得到完整的纯算术表达式：
 
 ```text
 a + 42
@@ -146,7 +146,7 @@ func main() {
 
 本题的关键在于题目名称的暗示 —— **Floating**（浮点数）。
 
-Python 的 `/` 运算符返回 float64，而 IEEE 754 双精度浮点数在特定区间内具有整数精度的特性。利用这一特性，可以用纯算术构造 FLOOR 函数，进而实现位运算。
+Python 的 `/` 运算符返回 float64，而 IEEE 754 双精度浮点数在特定区间内具有整数精度的特性。利用这一特性，可以用纯算术构造 $\operatorname{FLOOR}$ 函数，进而实现位运算。
 
 **数学链条**：
 
@@ -157,19 +157,19 @@ FLOOR (IEEE 754 精度特性)
       → XOR = a + b - 2*(a AND b)
 ```
 
-### 为什么 FLOOR 技巧有效？
+### 为什么 $\operatorname{FLOOR}$ 技巧有效？
 
 | 组件 | 公式 | 原理 |
 |------|------|------|
-| 魔法常数 C | $3 \times 2^{51}$ | 将加数推入 $[2^{52}, 2^{53})$，float64 精度 = 1.0 |
+| 魔法常数 $C$ | $3 \times 2^{51}$ | 将加数推入 $[2^{52}, 2^{53})$，float64 精度 = 1.0 |
 | 偏移量 | $-63/128$ | 修正四舍五入为向下取整（$63/128 = 0.4921875$） |
-| FLOOR(x) | $x - 63/128 + C - C$ | 加 C 触发舍入，减 C 还原 |
+| $\operatorname{FLOOR}(x)$ | $x - 63/128 + C - C$ | 加 $C$ 触发舍入，减 $C$ 还原 |
 
 ### 对比方案
 
 | 方案 | 表达式大小 | 复杂度 | 可行性 |
 |------|-----------|--------|--------|
-| **IEEE 754 FLOOR 技巧** | ~400 字节 | 简洁优雅 | **正确解法** |
+| **IEEE 754 $\operatorname{FLOOR}$ 技巧** | ~400 字节 | 简洁优雅 | **正确解法** |
 | Newton 多项式插值 | ~317 KB | 需要精确大整数运算 | 可行但笨重 |
 | 查表/穷举 | 不适用 | 无法在 AST 约束下实现 | 不可行 |
 
@@ -185,8 +185,8 @@ FLOOR (IEEE 754 精度特性)
 ### XOR 的算术分解
 
 - **XOR 公式**: $a \oplus b = a + b - 2(a \text{ AND } b)$
-- **AND 逐位计算**: 利用 FLOOR 和除法提取每一位
-- **位提取**: $\text{bit}_k(a) = \text{FLOOR}(a/2^k) - 2 \cdot \text{FLOOR}(a/2^{k+1})$
+- **AND 逐位计算**: 利用 $\operatorname{FLOOR}$ 和除法提取每一位
+- **位提取**: $\text{bit}_k(a) = \operatorname{FLOOR}(a/2^k) - 2 \cdot \operatorname{FLOOR}(a/2^{k+1})$
 
 ### Python AST 约束绕过
 
@@ -199,7 +199,7 @@ FLOOR (IEEE 754 精度特性)
 | 工具 | 用途 |
 |------|------|
 | Go (net, bufio) | TCP 客户端，连接服务器提交表达式 |
-| IEEE 754 数学 | 浮点精度特性构造 FLOOR 函数 |
+| IEEE 754 数学 | 浮点精度特性构造 $\operatorname{FLOOR}$ 函数 |
 
 ## 脚本归档
 - Go：[`NovruzCTF_Floating in Samani.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/NovruzCTF_Floating%20in%20Samani.go){target="_blank"}
@@ -331,7 +331,7 @@ Input: 任意字节
 
 **推荐流程**：Z3 验证 XOR 分解公式 → SageMath 推导简化 → Python 构造表达式 → Pwntools 提交 → 5 分钟内完成。
 
-> **注意**：本题的核心挑战是**数学推导**（IEEE 754 FLOOR 技巧），工具只能辅助验证和提交。关键洞察（利用浮点精度实现 FLOOR）需要人脑完成。
+> **注意**：本题的核心挑战是**数学推导**（IEEE 754 $\operatorname{FLOOR}$ 技巧），工具只能辅助验证和提交。关键洞察（利用浮点精度实现 $\operatorname{FLOOR}$）需要人脑完成。
 
 ## 解题流程图
 

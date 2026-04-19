@@ -69,8 +69,8 @@ encrypted_dna = long_to_bytes(resampled_dna).hex()
    - 然后 `n = transmission_key * self.vault_key`
 
 2. **指数是 65537**
-   - `2**16 + 1 = 65537`
-   - 这是 RSA 最常见的公开指数 `e`
+   - $2^{16} + 1 = 65537$
+   - 这是 RSA 最常见的公开指数 $e$
 
 3. **加密公式是 `pow(m, e, n)`**
    - `pow(bytes_to_long(...), evergreen_number, dinosaur_modulation_index)`
@@ -129,8 +129,8 @@ n_2 = p \cdot q_2
 $$
 
 其中：
-- `p = vault_key`（同一只恐龙固定不变）
-- `q_1, q_2 = transmission_key`（每次下载重新生成）
+- $p = \texttt{vault\_key}$（同一只恐龙固定不变）
+- $q_1, q_2 = \texttt{transmission\_key}$（每次下载重新生成）
 
 - 因此直接有：
 
@@ -141,7 +141,7 @@ $$
 - 这就把 RSA 模数的一个素因子直接算出来了
 
 ### 5. 关键突破点三：分解模数并解密
-- 拿到 `p = gcd(n1, n2)` 后，就可以：
+- 拿到 $p = \gcd(n_1, n_2)$ 后，就可以：
 
 $$
 q = \frac{n_1}{p}
@@ -155,28 +155,28 @@ $$
 d = e^{-1} \bmod \varphi(n_1)
 $$
 
-!!! note "为什么不是直接用 `1/65537`？"
-    这里的 `e^{-1}` 不是实数意义下的倒数 `1/e`，而是**模逆元**。  
-    我们要求的是一个**整数** `d`，使得：
+!!! note "为什么不是直接用 $1/65537$？"
+    这里的 $e^{-1}$ 不是实数意义下的倒数 $1/e$，而是**模逆元**。  
+    我们要求的是一个**整数** $d$，使得：
 
     $$
     e \cdot d \equiv 1 \pmod{\varphi(n)}
     $$
 
-    例如如果 `e = 3`、`\varphi(n) = 10`，那么 `d = 7`，因为：
+    例如如果 $e = 3$、$\varphi(n) = 10$，那么 $d = 7$，因为：
 
     $$
     3 \cdot 7 = 21 \equiv 1 \pmod{10}
     $$
 
-    这和 `1/3 = 0.333...` 完全不是一个概念。  
-    RSA 解密指数必须是**模 \(\varphi(n)\)** 的乘法逆元，否则就无法保证：
+    这和 $1/3 = 0.333\ldots$ 完全不是一个概念。  
+    RSA 解密指数必须是**模 $\varphi(n)$** 的乘法逆元，否则就无法保证：
 
     $$
     (m^e)^d = m^{ed} \equiv m \pmod n
     $$
 
-    所以即便 `1/65537` 这个实数看起来很小，它在 RSA 里也没有意义；真正有意义的是满足 `e*d ≡ 1 (mod φ(n))` 的那个大整数 `d`。
+    所以即便 $1/65537$ 这个实数看起来很小，它在 RSA 里也没有意义；真正有意义的是满足 $e \cdot d \equiv 1 \pmod{\varphi(n)}$ 的那个大整数 $d$。
 
 - 再对其中一组密文做标准 RSA 解密：
 
@@ -187,7 +187,7 @@ $$
 - 得到的 `m` 不是英文描述，而是一串 `A/T/G/C` 的 DNA 字符串，再按 4 个字符一组逆回 ASCII
 
 ### 6. 获取 Flag
-- 对你提供的两组 `Vexillum Rex` 下载结果做 `gcd(n1, n2)` 后，成功恢复共享质因子
+- 对你提供的两组 `Vexillum Rex` 下载结果做 $\gcd(n_1, n_2)$ 后，成功恢复共享质因子
 - 解密并逆 DNA 编码后得到：
 
 ```text
@@ -215,7 +215,7 @@ dach2026{R5A_a_d1n0s5r_0f_1ts_0wn_2fqkncq16x3mbtkf}
 - **flag 所在明文目标可预测**：`Has a crown and ... written on its back`
 
 ### 影响
-- 对同一只恐龙下载两次即可通过 `gcd(n1, n2)` 恢复共享质因子
+- 对同一只恐龙下载两次即可通过 $\gcd(n_1, n_2)$ 恢复共享质因子
 - 一旦分解出模数，就能完整解密该恐龙的 DNA
 - 由于 `Vexillum Rex` 的描述中直接嵌入 flag，最终可直接泄露 flag
 
@@ -226,12 +226,12 @@ dach2026{R5A_a_d1n0s5r_0f_1ts_0wn_2fqkncq16x3mbtkf}
 - 不要把敏感信息直接嵌入结构化、可预测的明文模板
 
 ## 知识点
-- 如何从代码识别 RSA：`n = p*q`、`e = 65537`、`pow(m, e, n)`
+- 如何从代码识别 RSA：$n = pq$、$e = 65537$、`pow(m, e, n)`
 - RSA shared-prime / GCD attack（共享素因子攻击）
 - 自定义字母表编码与逆编码（A/T/G/C 还原字符）
 
 ??? note "RSA 与模运算扩展阅读"
-    如果对 `e^{-1} mod φ(n)`、模运算法则、同余方程求解还不熟，可以看这篇专题：  
+    如果对 $e^{-1} \bmod \varphi(n)$、模运算法则、同余方程求解还不熟，可以看这篇专题：  
     [:material-book-open-variant: RSA 与模运算知识点扩展](rsa_modular_arithmetic.md)
 
 ## 使用的工具
@@ -277,7 +277,7 @@ python CTF_Writeups/scripts_python/ACSC2026Qualification_Dino_Vault.py \
 - **安装**：Python 3.10+ 与 `pycryptodome`
 - **详细步骤**：
   1. 收集同一连接中的两组 `(ciphertext, modulus)`
-  2. 计算 `p = gcd(n1, n2)`
+  2. 计算 $p = \gcd(n_1, n_2)$
   3. 分解 `n1`，恢复私钥 `d`
   4. 解密并将 DNA 还原为原始英文描述
 - **优势**：最贴合题目机制，便于长期归档
@@ -285,7 +285,7 @@ python CTF_Writeups/scripts_python/ACSC2026Qualification_Dino_Vault.py \
 ### 工具 B（可选）
 - **安装**：SageMath 或支持大整数数论的环境
 - **详细步骤**：
-  1. 用 `gcd(n1, n2)` 找共享质因子
+  1. 用 $\gcd(n_1, n_2)$ 找共享质因子
   2. 直接在 REPL 里恢复 `d`
   3. 另写一小段脚本逆 DNA 编码
 - **优势**：适合交互式验证每一步数论结论
