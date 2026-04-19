@@ -2,54 +2,49 @@
 
 ### 题目信息
 - 比赛: Hack for a Change 2026 March: UN SDG 3  
-- 题目: `ghost`（自定义 VM 逆向）  
-- 类别: Reverse / Pwn（Binary + VM）  
+- 题目: `Hidden Recipe`  
+- 类别: Web  
 - 难度: 中  
-- 附件/URL: `Prescription_Pad.zip`（内含 ELF x86_64 `ghost`）  
-  - 附件链接: 本地附件  
-  - 仓库位置: `./ghost`  
+- 附件/URL: Web 题目环境  
+  - 访问方式: 题目提供的站点 URL  
+  - 仓库位置: `Web/writeupHidden Recipe.md`  
 - Flag 格式: `SDG{...}`  
 - 状态: 已解  
 
 ### Flag
-`SDG{c79f529e74a36bef787a15c2ec53fb6d}`
+`待补充：请填写 Hidden Recipe 的实际 flag`
 
 ---
 
 ### 解题过程
 
-#### 1) 初始侦察/文件识别
-- 入口: 本地 `./ghost`  
-- 命令: `file ghost`、`strings ghost`  
-- 现象: 仅有 “Correct!” / “Wrong.”，无业务逻辑，怀疑自定义 VM。
+#### 1) 初始侦察
+- 进入题目站点后，先观察页面功能、可交互表单、请求参数与响应内容。  
+- 使用浏览器开发者工具与抓包工具检查路由、请求头、Cookie、返回包与前端脚本。  
+- 从页面命名和功能推测，题目核心应围绕“recipe/hidden content”相关的访问控制或参数处理问题展开。
 
-#### 2) 关键突破点一
-- `.text` 中发现按字节取 opcode → 跳表 `notrack jmp` 的分发器，确认栈式 VM。  
-- 用 `pyelftools` 计算 vaddr→offset，dump 跳表与字节码（起始约 `0x4040`）。
+#### 2) 枚举入口点
+- 检查是否存在隐藏页面、未链接接口、注释、静态资源或前端 JS 中暴露的 API 路径。  
+- 对常见位置进行排查，例如：`/admin`、`/api`、`/recipe`、`/hidden`、备份文件、调试接口等。  
+- 对输入点进行测试，关注参数篡改、鉴权绕过、信息泄露与服务端校验缺失。
 
-#### 3) 关键突破点二
-- 逆 handler 语义，得到指令集：  
-  - 栈：`push` / `pop` / `dup`  
-  - 算术/位：`add` / `sub` / `xor` / `mul` / `rol` / `and`  
-  - 内存：`load idx` / `store idx`（单字节槽，初值 0x5a，参与链式校验）  
-  - 输入：`push_input i`（取明文第 i 字节）  
-  - 控制：`cmp` + `jeq` / `jne` / `jmp`  
-  - 输出/结束：`print_correct` / `print_wrong` / `exit`
-- 解码字节码：长度必须 37；每字符做位运算、乘法 mod 256、位旋转、nibble 拆分，并与状态槽累加耦合。
+#### 3) 漏洞利用
+- 根据实际页面行为，构造能够访问隐藏 recipe 内容的请求。  
+- 若存在仅前端限制、可预测对象 ID、弱鉴权、模板泄露或参数信任问题，可直接修改请求进行验证。  
+- 成功访问隐藏内容后，进一步定位 flag 所在字段、页面或接口返回值。
 
 #### 4) 获取 Flag
-- Python 求解脚本思路：  
-  - 乘法 mod 256 直接暴力 0..255 反推  
-  - `rol` 的逆为 `ror`  
-  - 高/低 nibble 拆分后异或/与常量再合并  
-  - 同步状态槽的累加/异或  
-- 唯一解：`SDG{c79f529e74a36bef787a15c2ec53fb6d}`，输入即得 “Correct!”。
+- 在成功访问隐藏 recipe 内容后，从页面源码、接口响应或目标字段中提取 flag。  
+- 对关键请求与响应进行保存，便于后续复盘与整理 writeup。  
+- 将实际 flag 填入上方 Flag 区域，并补充最终利用请求示例。
 
 ---
 
 ### 攻击链/解题流程总结
-识别 VM 分发器 → dump 跳表与字节码 → 还原指令集 → 线性解码字节码 → 逆运算脚本求解 → Flag
+页面与接口侦察 → 枚举隐藏入口 → 构造/篡改请求 → 访问隐藏 recipe 内容 → 提取 Flag
 
+> 注：当前文件原先误写为 `ghost` 的逆向/VM 题解内容；已改为与文件名和目录一致的 `Hidden Recipe` Web 题目记录结构。
+> 若需要完整题解，请继续补充该题实际访问 URL、关键请求、漏洞点与真实 flag。
 ---
 
 ### 漏洞分析 / 机制分析
