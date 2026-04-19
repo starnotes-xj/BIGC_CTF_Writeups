@@ -6,7 +6,7 @@ hide:
 # CPCTF
 
 > **时间**: 2026-04-17 11:00 UTC ～ 2026-04-19 11:00 UTC
-> **题目数量**: 17（当前已收录）
+> **题目数量**: 18（当前已收录）
 > **类别**: Crypto / Reverse / Misc / Pwn / PPC / Web
 
 ## 相关链接
@@ -43,6 +43,7 @@ hide:
 | [jail](../../Misc(杂项)/CPCTF_jail.md) | 简单 | :material-check-circle: 已解 |
 | [Hello LaTeX3!!!](../../Misc(杂项)/CPCTF_Hello_LaTeX3!!!.md) | 简单 | :material-check-circle: 已解 |
 | [QRRRRRRRRRR](../../Misc(杂项)/CPCTF_QR_Generator.md) | 简单 | :material-check-circle: 已解 |
+| [Night View](../../Misc(杂项)/CPCTF_Night_View.md) | 待补 | 待解 |
 
 ## Pwn
 
