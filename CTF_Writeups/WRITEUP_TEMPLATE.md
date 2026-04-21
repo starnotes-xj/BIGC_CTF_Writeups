@@ -66,6 +66,8 @@
 - [工具 1] — [用途]
 - [工具 2] — [用途]
 
+> RSA 题补充约定：如果存在“分解整数 `n`”步骤，优先记录 `yafu` 的使用过程，再衔接 `RsaCtfTool` 或自写脚本完成解密。
+
 ## 脚本归档
 - Go：[`[题目名].go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/[题目名].go){target="_blank"}
 - Python：[`[题目名].py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/[题目名].py){target="_blank"}

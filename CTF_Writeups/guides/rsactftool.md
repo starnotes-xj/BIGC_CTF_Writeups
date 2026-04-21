@@ -33,6 +33,18 @@ export PATH="$(python3 -m site --user-base)/bin:$PATH"
 1. 直接给公钥文件（`--publickey`），让工具尝试攻击并恢复私钥
 2. 已知 `p/q/e` 时直接传参，配合 `--decrypt` 快速还原明文
 
+如果题目只给 `n/e/c` 且需要先做整数分解，建议先使用 `yafu` 分解 `n`，再把 `p/q` 交给 `RsaCtfTool`。
+
+```bash
+# 先分解 n，拿到 p/q
+yafu "factor(<n>)"
+
+# 再交给 RsaCtfTool 解密
+RsaCtfTool -p <p> -q <q> -e <e> --decrypt <cipher_int>
+```
+
+`yafu` 详细步骤见：[yafu 上手使用指南](yafu.md)
+
 本仓库中 `CPCTF 1、0、7` 这题适合第二种方式：先根据结构拿到 `p/q`，再交给工具做解密。
 
 ## 3. 实战：CPCTF - 1、0、7
@@ -97,6 +109,9 @@ RsaCtfTool --publickey "./keys/*.pem" --attack hastads --private
 
 # 已知 p/q/e 时直接解密
 RsaCtfTool -p <p> -q <q> -e <e> --decrypt <cipher_int>
+
+# 只知道 n 时，先用 yafu 分解
+yafu "factor(<N>)"
 ```
 
 ## 5. 使用建议
