@@ -7,7 +7,7 @@
 - **类别**: Reverse
 - **难度**: 待补
 - **附件/URL**: `omikuji`
-- **附件链接**: 附件待上传
+- **附件链接**: [下载附件](https://starnotes-xj.github.io/BIGC_CTF_Writeups/files/omikuji/omikuji){download} · [仓库位置](https://github.com/starnotes-xj/BIGC_CTF_Writeups/tree/main/CTF_Writeups/files/omikuji){target="_blank"}
 - **Flag格式**: `CPCTF{...}`
 - **状态**: 已解
 
@@ -16,9 +16,9 @@
 先查看文件基础信息：
 
 ```bash
-file ./omikuji
-strings -a ./omikuji | grep -E "Flag|omikuji"
-readelf -sW ./omikuji | grep -E "main|omikuji"
+file CTF_Writeups/files/omikuji/omikuji
+strings -a CTF_Writeups/files/omikuji/omikuji | grep -E "Flag|omikuji"
+readelf -sW CTF_Writeups/files/omikuji/omikuji | grep -E "main|omikuji"
 ```
 
 可以看到二进制中存在 `Flag: %s`，同时符号表没有被完全 strip，保留了 `main` 和 `omikuji` 这两个关键函数：
@@ -112,7 +112,7 @@ from elftools.elf.elffile import ELFFile
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from capstone.x86 import X86_REG_ESI
 
-with open("omikuji", "rb") as f:
+with open("CTF_Writeups/files/omikuji/omikuji", "rb") as f:
     elf = ELFFile(f)
     text = elf.get_section_by_name(".text")
     symtab = elf.get_section_by_name(".symtab")
