@@ -70,7 +70,7 @@
 - **题目/问题**：
   - Bitwise Scrumble（Crypto / bitwise 真值表）
   - Dualcast（Crypto / 编码还原）
-  - Anomaly 2（Crypto / 特殊 RSA 模数分解）
+  - Anomaly 2（Crypto / 模数误用与 gcd 恢复）
   - mod N Janken（Crypto / 伪随机与博弈）
   - Very Exciting（Crypto / 数学恢复）
   - Janken Master（Crypto / xoroshiro128+ 全零状态）

@@ -1,75 +1,80 @@
-"""
-CPCTF - Anomaly 2
+#!/usr/bin/env python3
+"""CPCTF - Anomaly 2 解题脚本。
 
-N 的十进制形式是 1^a 0^b 7^a。根据提示给出的乘法结构：
+题目脚本的关键错误是把 flag 整数当成了模数：
 
-    11111 * 1000007 = 11111077777
+    c = pow(n, e, m)
 
-一般化可得：
+其中 m = bytes_to_long(flag)。因此每一组输出都满足：
 
-    1^a 0^b 7^a = ((10^a - 1) // 9) * (10^(a+b) + 7)
+    n_i ** e_i - c_i = k_i * m
 
-因此无需通用分解算法，直接构造 p, q 后做标准 RSA 解密即可。
+对两组数据求 gcd，就能恢复 m 的倍数。若两个 k_i 还有额外公共因子，
+gcd 会等于 small_factor * m；再结合 flag 格式和原同余式验证即可去掉该因子。
 """
 
 from __future__ import annotations
 
+import math
 import re
 from pathlib import Path
 
-
-ATTACHMENT = (
-    Path(__file__).resolve().parents[1]
-    / "files"
-    / "Anomaly_2"
-    / "107107_b38e4b4bcd49c22b496049abb867695331cdc0f7542dd59288b3597e1b8e4119.txt"
-)
+FLAG_PREFIX = "CPCTF{"
+OUTPUT_PATH = Path(__file__).resolve().parents[1] / "files" / "Anomaly_2" / "output.txt"
 
 
-def parse_attachment(path: Path) -> tuple[int, int, int]:
+def long_to_bytes(value: int) -> bytes:
+    """把非负整数转换为最短的大端字节串。"""
+    if value == 0:
+        return b"\x00"
+    return value.to_bytes((value.bit_length() + 7) // 8, "big")
+
+
+def parse_output(path: Path) -> dict[str, int]:
+    """从 output.txt 中解析 n1/e1/c1/n2/e2/c2。"""
     text = path.read_text()
-    values: dict[str, int] = {}
-    for name in ("N", "e", "c"):
-        match = re.search(rf"{name}\s*=\s*(\d+)", text)
-        if match is None:
-            raise ValueError(f"附件中找不到 {name}")
-        values[name] = int(match.group(1))
-    return values["N"], values["e"], values["c"]
+    values = {
+        name: int(number)
+        for name, number in re.findall(r"^(n\d+|e\d+|c\d+)\s*=\s*(\d+)$", text, re.MULTILINE)
+    }
+    missing = {"n1", "e1", "c1", "n2", "e2", "c2"} - values.keys()
+    if missing:
+        raise ValueError(f"{path} 缺少字段: {', '.join(sorted(missing))}")
+    return values
 
 
-def split_digit_runs(n: int) -> tuple[int, int, int]:
-    digits = str(n)
-    match = re.fullmatch(r"(1+)(0+)(7+)", digits)
-    if match is None:
-        raise ValueError("N 不是 1^a 0^b 7^a 的形式")
+def recover_flag(values: dict[str, int]) -> str:
+    """利用 gcd(n_i ** e_i - c_i) 恢复 flag，并用原同余式验证。"""
+    diff1 = pow(values["n1"], values["e1"]) - values["c1"]
+    diff2 = pow(values["n2"], values["e2"]) - values["c2"]
+    common = math.gcd(diff1, diff2)
 
-    ones, zeros, sevens = map(len, match.groups())
-    if ones != sevens:
-        raise ValueError("N 中 1 和 7 的数量不同，无法套用本题结构")
-    return ones, zeros, sevens
+    # common 一定是 m 的倍数，但可能因为两个商 k_i 也有公共因子而变成 k*m。
+    # 本题里额外因子为 2；这里扫描小 cofactor，并用 flag 格式和原等式双重确认。
+    for cofactor in range(1, 10_000):
+        if common % cofactor != 0:
+            continue
 
+        candidate_m = common // cofactor
+        try:
+            flag = long_to_bytes(candidate_m).decode()
+        except UnicodeDecodeError:
+            continue
 
-def long_to_bytes(n: int) -> bytes:
-    return n.to_bytes((n.bit_length() + 7) // 8, "big")
+        if not flag.startswith(FLAG_PREFIX) or not flag.endswith("}"):
+            continue
+        if pow(values["n1"], values["e1"], candidate_m) != values["c1"]:
+            continue
+        if pow(values["n2"], values["e2"], candidate_m) != values["c2"]:
+            continue
+        return flag
 
-
-def solve() -> str:
-    n, e, c = parse_attachment(ATTACHMENT)
-    ones, zeros, _ = split_digit_runs(n)
-
-    p = (10**ones - 1) // 9
-    q = 10 ** (ones + zeros) + 7
-    if p * q != n:
-        raise ValueError("构造出的 p, q 无法还原 N")
-
-    phi = (p - 1) * (q - 1)
-    d = pow(e, -1, phi)
-    m = pow(c, d, n)
-    return long_to_bytes(m).decode()
+    raise ValueError("未能恢复出符合格式且通过同余验证的 flag")
 
 
 def main() -> None:
-    print(solve())
+    values = parse_output(OUTPUT_PATH)
+    print(recover_flag(values))
 
 
 if __name__ == "__main__":

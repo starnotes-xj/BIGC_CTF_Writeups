@@ -33,6 +33,7 @@ hide:
 |------|------|------|
 | [hidden](../../Reverse Engineering(逆向工程)/CPCTF_hidden.md) | 简单 | :material-check-circle: 已解 |
 | [Out of World](../../Reverse Engineering(逆向工程)/CPCTF_Out_of_World.md) | 简单 | :material-check-circle: 已解 |
+| [omikuji](../../Reverse Engineering(逆向工程)/CPCTF_omikuji.md) | 待补 | :material-check-circle: 已解 |
 
 ## Misc
 

@@ -383,11 +383,16 @@ body {
   overflow: hidden;
 }
 
+.md-typeset .highlight > pre,
+.md-typeset .highlighttable pre {
+  min-height: 5.25rem;
+}
+
 .md-typeset pre code {
   background: var(--cyb-code-bg);
   border: none;
   color: #c9d1d9;
-  padding: 0;
+  padding: 1rem 1.1rem;
   font-size: 0.84em;
 }
 

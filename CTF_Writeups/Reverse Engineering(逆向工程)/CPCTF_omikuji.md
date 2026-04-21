@@ -1,12 +1,17 @@
-# omikuji Writeup
+# CPCTF - omikuji Writeup
 
 ## 题目信息
 
-- 文件名：`omikuji`
-- 类型：ELF 64-bit PIE executable
-- 主要函数：`main`、`omikuji(std::string)`
+- **比赛**: CPCTF
+- **题目**: omikuji
+- **类别**: Reverse
+- **难度**: 待补
+- **附件/URL**: `omikuji`
+- **附件链接**: 附件待上传
+- **Flag格式**: `CPCTF{...}`
+- **状态**: 已解
 
-## 分析过程
+## 解题过程
 
 先查看文件基础信息：
 

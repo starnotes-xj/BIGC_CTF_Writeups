@@ -5,200 +5,152 @@
 - **题目**: Anomaly 2
 - **类别**: Crypto
 - **难度**: 简单
-- **附件/URL**: `107107_b38e4b4bcd49c22b496049abb867695331cdc0f7542dd59288b3597e1b8e4119.txt`
-- **附件链接**: [下载附件](https://starnotes-xj.github.io/BIGC_CTF_Writeups/files/Anomaly_2/107107_b38e4b4bcd49c22b496049abb867695331cdc0f7542dd59288b3597e1b8e4119.txt){download} · [仓库位置](https://github.com/starnotes-xj/BIGC_CTF_Writeups/tree/main/CTF_Writeups/files/Anomaly_2){target="_blank"}
+- **附件/URL**: `chal_11b2c160203be5ff1faff97d47a20145736f862d4f6560638060d42b1131b49f .py`、`output.txt`
+- **附件链接**: [chal_11b2c160203be5ff1faff97d47a20145736f862d4f6560638060d42b1131b49f .py](https://starnotes-xj.github.io/BIGC_CTF_Writeups/files/Anomaly_2/chal_11b2c160203be5ff1faff97d47a20145736f862d4f6560638060d42b1131b49f%20.py){download} · [output.txt](https://starnotes-xj.github.io/BIGC_CTF_Writeups/files/Anomaly_2/output.txt){download} · [仓库位置](https://github.com/starnotes-xj/BIGC_CTF_Writeups/tree/main/CTF_Writeups/files/Anomaly_2){target="_blank"}
 - **Flag格式**: `CPCTF{...}`
 - **状态**: 已解
 
 ## Flag
 
 ```text
-CPCTF{N_1s_34sy_70_bRe4k_873b4982a}
+CPCTF{7h3_n3x7_574710n_15_Kukud0}
 ```
 
 ## 解题过程
 
 ### 1. 初始侦察/文件识别
-- 附件给出一组 RSA 参数：
+- 题目附件包含源码 `chal_11b2c160203be5ff1faff97d47a20145736f862d4f6560638060d42b1131b49f .py` 和输出文件 `output.txt`。
+- 源码的核心逻辑如下：
 
-```text
-N = ...
-e = 65537
-c = ...
+```python
+def rsa_encryption(flag):
+    m = bytes_to_long(flag.encode())
+    e = 3
+    p, q = getPrime(512), getPrime(512)
+    n = p * q
+    c = pow(n, e, m)
+    return (n, e, c)
 ```
 
-- 题目提示：
-  - `N` 的值很特殊
-  - 目标是把 `N` 分解成两个质数
-  - 关键在于 `1` 和 `7` 的个数相同
-  - 示例（按乘法结构理解）：$11111 \times 1000007 = 11111077777$
-
-- 观察附件中的 `N`，它的十进制形式非常异常，只由大量 `1`、`0`、`7` 组成：
+- 这里最异常的地方是 `pow(n, e, m)`：第三个参数 `m` 是模数，而 `m = bytes_to_long(flag.encode())`。
+- 也就是说，题目不是常规 RSA 的 `c = m^e mod n`，而是把 flag 对应的大整数当成了模数。
+- `output.txt` 给出两组同一 flag 下的输出：
 
 ```text
-111...111000...000777...777
+n1 = 87405182736104359780257026883853062930574663561980633775939752446259523158955808889602775147349422181286752422777444540409043705137242444906859982710084376976995577762838755152310969883588687143185855446868518299103284219288298089004723615989669846760852206531362806473299208237879292642911953181354015637739
+e1 = 3
+c1 = 5947050188011198882167638654472754073461946759644146614025932625290616486683809
+n2 = 89984079446277129336031962353513290766726794253576464892005498900113523905864088594103793620450760604852463679010581777863799208215048737093285826288578917592161127386371969728330753862369184707806787782705755694366125100020912792307994059926523686129099696784648345246590104006734129991238410853485925459399
+e2 = 3
+c2 = 1469764391126334007675223493311131828227376713240295689831327636992622204657369
 ```
 
 ### 2. 关键突破点一
-- 统计 `N` 的十进制数字分布：
+- 因为：
 
-```text
-len(N) = 729
-count('1') = 317
-count('0') = 95
-count('7') = 317
+$$
+c_i \equiv n_i^{e_i} \pmod m
+$$
+
+所以：
+
+$$
+n_i^{e_i}-c_i = k_i m
+$$
+
+- 两组数据使用同一个 flag，因此使用的是同一个 `m`。
+- 于是 `m` 必然同时整除：
+
+$$
+n_1^{e_1}-c_1
+$$
+
+和：
+
+$$
+n_2^{e_2}-c_2
+$$
+
+- 直接求 gcd：
+
+```python
+from math import gcd
+
+common = gcd(n1**e1 - c1, n2**e2 - c2)
 ```
-
-- 因此 `N` 的结构可以写成：
-
-```text
-N = 1...1 0...0 7...7
-    317   95    317
-```
-
-- 令：
-
-$$
-R_n = \frac{10^n - 1}{9}
-$$
-
-也就是由 `n` 个 `1` 组成的 repunit。
-
-- 题目给的例子：
-
-```text
-11111 × 1000007 = 11111077777
-```
-
-本质上就是：
-
-$$
-R_5 \cdot (10^6+7)
-= R_5\cdot 10^6 + 7R_5
-= 11111077777
-$$
-
-- 一般化后，如果：
-
-$$
-N = 1^a 0^b 7^a
-$$
-
-那么可以尝试：
-
-$$
-p = R_a = \frac{10^a-1}{9}
-$$
-
-$$
-q = 10^{a+b}+7
-$$
-
-并检查：
-
-$$
-N = p q
-$$
 
 ### 3. 关键突破点二
-- 对本题：
-
-```text
-a = 317
-b = 95
-```
-
-- 所以：
+- 需要注意，`gcd` 得到的不一定正好等于 `m`，也可能是 `m` 的小倍数：
 
 $$
-p = \frac{10^{317}-1}{9}
+\gcd(k_1m, k_2m)=m\cdot\gcd(k_1,k_2)
 $$
 
-$$
-q = 10^{412}+7
-$$
-
-- 直接验证：
+- 本题计算得到的 `common` 是真实明文整数的 `2` 倍。
+- 因此尝试小 cofactor，并用 flag 格式和原同余式同时验证：
 
 ```python
-p = (10**317 - 1) // 9
-q = 10**412 + 7
-assert p * q == N
+for cofactor in range(1, 10000):
+    if common % cofactor != 0:
+        continue
+    candidate_m = common // cofactor
+    candidate = candidate_m.to_bytes((candidate_m.bit_length() + 7) // 8, "big")
+    if candidate.startswith(b"CPCTF{") and candidate.endswith(b"}"):
+        assert pow(n1, e1, candidate_m) == c1
+        assert pow(n2, e2, candidate_m) == c2
+        print(candidate.decode())
 ```
-
-- 这两个数也正好都是质数，因此 RSA 模数成功分解。
 
 ### 4. 获取 Flag
-- 得到 `p, q` 后就是标准 RSA 解密：
-
-$$
-\varphi(N)=(p-1)(q-1)
-$$
-
-$$
-d=e^{-1}\bmod\varphi(N)
-$$
-
-$$
-m=c^d\bmod N
-$$
-
-- 用 Python 还原明文字节：
-
-```python
-phi = (p - 1) * (q - 1)
-d = pow(e, -1, phi)
-m = pow(c, d, N)
-flag = m.to_bytes((m.bit_length() + 7) // 8, "big")
-```
-
-- 得到：
+- 当 `cofactor = 2` 时，得到的整数可以正常还原为 ASCII 字符串，并且能通过两组原始同余式验证。
+- 最终 flag 为：
 
 ```text
-CPCTF{N_1s_34sy_70_bRe4k_873b4982a}
+CPCTF{7h3_n3x7_574710n_15_Kukud0}
 ```
 
 ## 攻击链/解题流程总结
 
-读取 $N/e/c$ -> 观察 $N$ 的十进制异常结构 -> 统计 $1/0/7$ 个数 -> 利用 $1^a0^b7^a = \operatorname{repunit}(a) \cdot (10^{a+b}+7)$ -> 分解 $N$ -> 标准 RSA 解密 -> 得到 Flag
+```text
+阅读源码 -> 发现 flag 被当作模数 m -> 由 c_i = n_i^e_i mod m 推出 m | (n_i^e_i - c_i) -> 对两组差值求 gcd -> 去掉额外小公因子 -> long_to_bytes 还原 flag -> 回代验证
+```
 
 ## 漏洞分析 / 机制分析
 
 ### 根因
-- RSA 安全性依赖于模数 $N = pq$ 难以分解。
-- 本题的 `N` 不是随机生成的普通 RSA 模数，而是被构造成了非常明显的十进制模式。
-- 当 $N$ 呈现 $1^a0^b7^a$ 这种形式，并且 `1` 与 `7` 的个数相同，就能反推出两个因子：
+- 代码把 `pow(base, exp, mod)` 的第三个参数当成了普通参与加密的值，但它实际代表模数。
+- `m = bytes_to_long(flag.encode())` 被放在模数位置后，每个输出都泄露了一个 `m` 的倍数关系：
 
 $$
-\frac{10^a-1}{9}
-\quad\text{和}\quad
-10^{a+b}+7
+m \mid (n^e-c)
 $$
+
+- 多组同模输出会让攻击者通过 gcd 恢复 `m`。
 
 ### 影响
-- 不需要通用大整数分解算法。
-- 只要识别十进制模式并套用题目提示，就能瞬间得到 `p` 和 `q`。
-- 后续解密完全退化为普通 RSA 私钥恢复。
+- 不需要分解 `n`，也不需要知道 `p, q`。
+- 只要有两组或更多组 `(n, e, c)`，就可以利用共同模数关系恢复 flag 对应的大整数。
+- 如果 gcd 带有额外小因子，也能通过 flag 格式和原公式验证去除。
 
 ### 修复建议（适用于漏洞类题目）
-- 真实 RSA 模数必须由安全随机生成的独立大素数相乘得到。
-- 不应使用有明显十进制结构、可预测结构或人为构造模式的素数 / 模数。
-- 生成密钥时应使用成熟密码库，不要自行构造“看起来有趣”的 `p`、`q` 或 `N`。
+- 不要把敏感明文或密钥材料作为模数参与公开计算。
+- 如果要实现 RSA 加密，应使用 `c = pow(m, e, n)`，并在真实场景中使用标准库提供的带填充方案，例如 RSA-OAEP。
+- 代码审计时要特别确认 `pow(base, exp, mod)` 三个参数的语义，避免把“被加密消息”和“模数”混淆。
 
 ## 知识点
-- RSA 模数分解后恢复私钥
-- Repunit 数 $R_n=(10^n-1)/9$
-- 从十进制模式反推乘法结构
-- 题目提示中的小例子如何一般化
+- Python 三参数 `pow(base, exp, mod)` 的模幂语义
+- 由同余式构造整除关系
+- 多组倍数取 gcd 恢复隐藏模数
+- `bytes_to_long` / `long_to_bytes` 的互逆转换
 
 ## 使用的工具
-- Python 3 — 解析附件、构造因子、RSA 解密
-- PowerShell — 查看附件内容和归档路径
+- Python 3 — 解析输出、计算 gcd、还原 flag
+- `math.gcd` — 从两组倍数关系中恢复共同因子
 
 ## 脚本归档
 - Go：待补
 - Python：[`CPCTF_Anomaly_2.py` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_python/CPCTF_Anomaly_2.py){target="_blank"}
-- 说明：Python 脚本会自动解析附件，按 $1^a0^b7^a$ 结构分解 $N$ 并输出 flag
+- 说明：Python 脚本会读取归档后的 `files/Anomaly_2/output.txt`，计算 `gcd(n_i ** e_i - c_i)`，去掉额外小 cofactor 并输出完整 flag。
 
 ## 命令行提取关键数据（无 GUI）
 
@@ -208,31 +160,31 @@ python CTF_Writeups/scripts_python/CPCTF_Anomaly_2.py
 
 ## 推荐工具与优化解题流程
 
-> 这题的核心不是跑通用分解，而是识别 `N` 的十进制结构异常。
+> 这题的核心不是分解 RSA 模数，而是发现 flag 被错误地放在了模幂运算的模数位置。
 
 ### 工具对比总结
 
 | 工具 | 适用阶段 | 本题耗时 | 优点 | 缺点 |
 |------|----------|----------|------|------|
-| 直接观察十进制 `N` | 建模 | 秒级 | 能发现大量 `1/0/7` 的模式 | 需要注意数字个数 |
-| Python 脚本 | 解密 | 秒级 | 适合统计、构造因子、计算 RSA 私钥 | 需要写少量代码 |
-| 通用因数分解 | 误区 / 备选 | 不定 | 不依赖模式识别 | 本题没有必要，可能很慢 |
+| 直接阅读源码 | 建模 | 秒级 | 能立刻发现 `pow(n, e, m)` 参数异常 | 需要理解三参数 `pow` |
+| Python `math.gcd` | 恢复明文整数 | 秒级 | 标准库即可完成，结果可复现 | 需要处理 gcd 可能是 `m` 的倍数 |
+| 通用 RSA 工具 | 误区 / 备选 | 不适用 | 适合常规 RSA | 本题不需要分解 `n`，方向错误 |
 
 ### 推荐流程
 
-**推荐流程**：先观察 $N$ 的十进制结构 -> 统计连续 `1/0/7` 的个数 -> 构造 $p=\frac{10^a-1}{9}$ 和 $q=10^{a+b}+7$ -> 验证 $pq=N$ -> RSA 解密得到 flag。
+**推荐流程**：先读源码确认 `m` 是 flag 整数且处在模数位置 -> 从 `output.txt` 解析两组 `(n, e, c)` -> 计算 `gcd(n1^e1-c1, n2^e2-c2)` -> 尝试小 cofactor -> 转字节并按 `CPCTF{...}` 验证 -> 回代原同余式确认。
 
 ### 工具 A（推荐首选）
 - **安装**：Python 3
 - **详细步骤**：
-  1. 正则读取附件中的 `N, e, c`
-  2. 对 `str(N)` 做 run-length 统计
-  3. 得到 `a = count('1')`、`b = count('0')`
-  4. 构造 `p` 和 `q`
-  5. 用 `pow(e, -1, phi)` 求私钥指数并解密
-- **优势**：完全贴合题目提示，最快最稳
+  1. 读取 `output.txt`
+  2. 用正则提取 `n1/e1/c1/n2/e2/c2`
+  3. 计算 `common = gcd(n1**e1 - c1, n2**e2 - c2)`
+  4. 尝试 `common // cofactor`，把候选整数转换为字节串
+  5. 用 flag 格式和 `pow(n_i, e_i, candidate_m) == c_i` 验证候选
+- **优势**：完全贴合题目漏洞，依赖少，可直接复现。
 
 ### 工具 B（可选）
-- **安装**：SageMath / SymPy
-- **详细步骤**：可用 `is_prime` / `isprime` 验证 `p, q` 是否为质数。
-- **优势**：适合补充验证，但不是解题必要条件
+- **安装**：CyberChef 或任意大整数转字节工具
+- **详细步骤**：可在算出候选整数后，把十进制整数按大端序转回字节串辅助验证。
+- **优势**：适合手工交叉检查，但最终仍建议使用本地脚本归档。

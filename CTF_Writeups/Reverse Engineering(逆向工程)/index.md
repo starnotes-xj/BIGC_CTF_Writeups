@@ -4,7 +4,7 @@ title: 逆向工程分类索引
 
 # 逆向工程
 
-当前分类共收录 **5 篇文章**，主要覆盖 ELF/二进制逆向与逻辑还原。
+当前分类共收录 **6 篇文章**，主要覆盖 ELF/二进制逆向与逻辑还原。
 
 ## 新手指南
 
@@ -19,3 +19,4 @@ title: 逆向工程分类索引
 | Pakhlivan fell in love with Zoktay | [查看 Writeup](NovruzCTF_Pakhlivan_fell_in_love_with_Zoktay.md) |
 | hidden | [查看 Writeup](CPCTF_hidden.md) |
 | Out of World | [查看 Writeup](CPCTF_Out_of_World.md) |
+| omikuji | [查看 Writeup](CPCTF_omikuji.md) |
