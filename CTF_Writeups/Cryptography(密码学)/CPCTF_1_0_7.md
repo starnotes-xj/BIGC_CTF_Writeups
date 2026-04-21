@@ -193,7 +193,9 @@ $$
 - Python 3 — 读取附件、统计数字块并构造因子
 - Go 1.25+ — 使用 `math/big` 纯标准库复现同一条解题链
 - SymPy（可选）— 如需额外验证，可用 `isprime()` 检查质性
+- yafu（可选） — 若遇到“仅给 `n` 需做通用整数分解”的 RSA 题型，可先分解再交给 RsaCtfTool
 - RsaCtfTool 安装与常用命令参考：[RsaCtfTool 上手使用指南](../guides/rsactftool.md)
+- yafu 安装与常用命令参考：[yafu 上手使用指南](../guides/yafu.md)
 
 ## 脚本归档
 - Go：[`CPCTF_1_0_7.go` :material-open-in-new:](https://github.com/starnotes-xj/BIGC_CTF_Writeups/blob/main/CTF_Writeups/scripts_go/CPCTF_1_0_7.go){target="_blank"}
@@ -251,7 +253,7 @@ go run CTF_Writeups/scripts_go/CPCTF_1_0_7.go
 | Python | 参数解析、公式验证、RSA 解密 | < 1 秒 | 原生大整数支持好，复现成本低 | 需要自己写少量脚本 |
 | Go | 参数解析、公式验证、RSA 解密 | < 1 秒 | 纯标准库，适合长期归档 | `math/big` 写法比 Python 稍长 |
 | SymPy | 素性测试 | < 1 秒 | `isprime()` 使用方便 | 本题不是必须，只是额外验证 |
-| factordb / 通用分解工具 | 尝试分解 N | 不推荐 | 自动化程度高 | 无法体现本题结构突破点，且大数分解并非本题重点 |
+| yafu / 通用分解工具 | 尝试分解 N | 不推荐（本题） | 可用于一般 RSA 分解场景 | 本题重点是结构化代数分解，不是通用硬分解 |
 
 ### 推荐流程
 
